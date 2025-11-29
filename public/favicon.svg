@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="prism-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="50%" style="stop-color:#8b5cf6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ec4899;stop-opacity:1" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background circle with gradient -->
+  <circle cx="50" cy="50" r="48" fill="url(#prism-gradient)" opacity="0.9"/>
+  
+  <!-- Letter Z -->
+  <path d="M 25 30 L 75 30 L 75 40 L 40 40 L 75 60 L 75 70 L 25 70 L 25 60 L 60 60 L 25 40 Z" 
+        fill="white" 
+        filter="url(#glow)"
+        opacity="0.95"/>
+  
+  <!-- Dot -->
+  <circle cx="75" cy="75" r="4" fill="url(#prism-gradient)"/>
+</svg>
+

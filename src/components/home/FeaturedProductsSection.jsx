@@ -1,0 +1,42 @@
+import { Link } from 'react-router-dom'
+import { FiArrowRight } from 'react-icons/fi'
+import ProductCard from '../ui/ProductCard'
+import SectionHeader from '../ui/SectionHeader'
+
+const FeaturedProductsSection = ({ products }) => {
+  if (!products || products.length === 0) return null
+
+  return (
+    <section className="py-32 relative overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[80vw] bg-blue-900/10 rounded-full blur-[100px] pointer-events-none" />
+      
+      <div className="container mx-auto px-6 relative z-10">
+        <SectionHeader
+          title="Featured Products"
+          subtitle="Handpicked premium templates and themes from our marketplace"
+        />
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          {products.map((product) => (
+            <ProductCard key={product._id} product={product} />
+          ))}
+        </div>
+        
+        <div className="text-center">
+          <Link 
+            to="/products" 
+            className="px-8 py-4 glass rounded-full font-semibold text-lg text-white transition-all hover:scale-105 hover:bg-gradient-to-r hover:from-cyan-500/20 hover:via-purple-500/20 hover:to-pink-500/20 hover:border-purple-500/50 hover:shadow-[0_0_30px_-5px_rgba(139,92,246,0.4)] inline-flex items-center gap-2"
+            style={{
+              border: '1px solid rgba(139, 92, 246, 0.3)'
+            }}
+          >
+            View All Products <FiArrowRight className="w-5 h-5" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default FeaturedProductsSection
+
