@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { FiClock, FiTag, FiUser } from 'react-icons/fi'
 import api from '../../utils/api'
+import SEO from '../../components/seo/SEO'
+import { generateArticleSchema, generateBreadcrumbSchema } from '../../utils/seo'
 
 const StoryDetail = () => {
   const { slug } = useParams()
@@ -47,19 +49,45 @@ const StoryDetail = () => {
     )
   }
 
-  return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
-        <nav className="mb-8 text-sm">
-          <Link to="/" className="text-gray-500 hover:text-primary-600">Home</Link>
-          <span className="mx-2 text-gray-400">/</span>
-          <Link to="/stories" className="text-gray-500 hover:text-primary-600">Stories</Link>
-          <span className="mx-2 text-gray-400">/</span>
-          <span className="text-gray-900">{story.title}</span>
-        </nav>
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://zunaweb.com/' },
+    { name: 'Stories', url: 'https://zunaweb.com/stories' },
+    { name: story.title, url: `https://zunaweb.com/stories/${story.slug}` }
+  ]
 
-        <article className="bg-white rounded-xl shadow-lg overflow-hidden">
+  const structuredData = [
+    generateArticleSchema(story),
+    generateBreadcrumbSchema(breadcrumbItems)
+  ]
+
+  return (
+    <>
+      <SEO
+        title={story.title}
+        description={story.excerpt || story.content?.substring(0, 160) || `Read ${story.title} on Zuna Web`}
+        keywords={`${story.title}, ${story.category}, blog, article, web development, ${story.tags?.join(', ') || ''}`}
+        image={story.coverImage}
+        url={`https://zunaweb.com/stories/${story.slug}`}
+        type="article"
+        author={story.author?.username || 'Zuna Web Team'}
+        publishedTime={story.createdAt}
+        modifiedTime={story.updatedAt || story.createdAt}
+        structuredData={structuredData}
+      />
+      <div className="min-h-screen bg-gray-50 py-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Breadcrumb */}
+          <nav className="mb-8 text-sm" aria-label="Breadcrumb">
+            <ol className="flex items-center space-x-2">
+              <li><Link to="/" className="text-gray-500 hover:text-primary-600">Home</Link></li>
+              <li><span className="mx-2 text-gray-400">/</span></li>
+              <li><Link to="/stories" className="text-gray-500 hover:text-primary-600">Stories</Link></li>
+              <li><span className="mx-2 text-gray-400">/</span></li>
+              <li><span className="text-gray-900" aria-current="page">{story.title}</span></li>
+            </ol>
+          </nav>
+
+          <article className="bg-white rounded-xl shadow-lg overflow-hidden" itemScope itemType="https://schema.org/Article">
           {/* Cover Image */}
           {story.coverImage && (
             <div className="h-96 overflow-hidden">
@@ -90,7 +118,7 @@ const StoryDetail = () => {
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">{story.title}</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6" itemProp="headline">{story.title}</h1>
 
             {/* Excerpt */}
             {story.excerpt && (
@@ -113,6 +141,7 @@ const StoryDetail = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

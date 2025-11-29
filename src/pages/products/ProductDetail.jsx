@@ -4,6 +4,8 @@ import { FiStar, FiShoppingCart, FiUser, FiCheck, FiHeart } from 'react-icons/fi
 import api from '../../utils/api'
 import useAuthStore from '../../store/authStore'
 import useCartStore from '../../store/cartStore'
+import SEO from '../../components/seo/SEO'
+import { generateProductSchema, generateBreadcrumbSchema } from '../../utils/seo'
 
 const ProductDetail = () => {
   const { slug } = useParams()
@@ -78,17 +80,40 @@ const ProductDetail = () => {
     )
   }
 
+  const breadcrumbItems = [
+    { name: 'Home', url: 'https://zunaweb.com/' },
+    { name: 'Products', url: 'https://zunaweb.com/products' },
+    { name: product.title, url: `https://zunaweb.com/products/${product.slug}` }
+  ]
+
+  const structuredData = [
+    generateProductSchema(product),
+    generateBreadcrumbSchema(breadcrumbItems)
+  ]
+
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
-        <nav className="mb-8 text-sm">
-          <Link to="/" className="text-gray-500 hover:text-primary-600">Home</Link>
-          <span className="mx-2 text-gray-400">/</span>
-          <Link to="/products" className="text-gray-500 hover:text-primary-600">Products</Link>
-          <span className="mx-2 text-gray-400">/</span>
-          <span className="text-gray-900">{product.title}</span>
-        </nav>
+    <>
+      <SEO
+        title={product.title}
+        description={product.shortDescription || product.description || `Premium ${product.category} - ${product.title}`}
+        keywords={`${product.title}, ${product.category}, web template, digital product, ${product.tags?.join(', ') || ''}`}
+        image={product.coverImage}
+        url={`https://zunaweb.com/products/${product.slug}`}
+        type="product"
+        structuredData={structuredData}
+      />
+      <div className="min-h-screen bg-gray-50 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Breadcrumb */}
+          <nav className="mb-8 text-sm" aria-label="Breadcrumb">
+            <ol className="flex items-center space-x-2">
+              <li><Link to="/" className="text-gray-500 hover:text-primary-600">Home</Link></li>
+              <li><span className="mx-2 text-gray-400">/</span></li>
+              <li><Link to="/products" className="text-gray-500 hover:text-primary-600">Products</Link></li>
+              <li><span className="mx-2 text-gray-400">/</span></li>
+              <li><span className="text-gray-900" aria-current="page">{product.title}</span></li>
+            </ol>
+          </nav>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
           {/* Images */}
@@ -133,7 +158,7 @@ const ProductDetail = () => {
                 )}
               </div>
               
-              <h1 className="text-4xl font-bold mb-4">{product.title}</h1>
+              <h1 className="text-4xl font-bold mb-4" itemProp="name">{product.title}</h1>
               
               <div className="flex items-center space-x-4 mb-6">
                 <div className="flex items-center">
@@ -316,6 +341,7 @@ const ProductDetail = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

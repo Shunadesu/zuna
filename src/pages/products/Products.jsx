@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FiStar, FiSearch, FiFilter, FiTrendingUp, FiArrowRight } from 'react-icons/fi'
 import useDataStore from '../../store/dataStore'
+import SEO from '../../components/seo/SEO'
 import GlassCard from '../../components/ui/GlassCard'
 import AnimatedBackground from '../../components/backgrounds/AnimatedBackground'
 
@@ -60,13 +61,20 @@ const Products = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-black text-white relative py-32">
-      <AnimatedBackground variant="blue" />
-      
-      <div className="container mx-auto px-6 relative z-10">
-        {/* Header */}
-        <div className="text-center mb-20">
-          <h1 className="section-title">Marketplace</h1>
+    <>
+      <SEO
+        title="Marketplace - Premium Digital Products"
+        description="Browse our curated collection of premium web templates, WordPress themes, HTML templates, and digital resources. Find the perfect solution for your next project."
+        keywords="web templates, WordPress themes, HTML templates, digital products, marketplace, premium templates, website themes"
+        url="https://zunaweb.com/products"
+      />
+      <div className="min-h-screen bg-black text-white relative py-32">
+        <AnimatedBackground variant="blue" />
+        
+        <div className="container mx-auto px-6 relative z-10">
+          {/* Header */}
+          <div className="text-center mb-20">
+            <h1 className="section-title">Marketplace</h1>
           <div className="h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full w-24 mx-auto mb-6" />
           <p className="section-subtitle">
             Discover premium templates, themes, and digital resources
@@ -234,6 +242,7 @@ const Products = () => {
         )}
       </div>
     </div>
+    </>
   )
 }
 

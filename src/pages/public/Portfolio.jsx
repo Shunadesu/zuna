@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { FiExternalLink, FiGithub } from 'react-icons/fi'
 import useDataStore from '../../store/dataStore'
+import SEO from '../../components/seo/SEO'
 import GlassCard from '../../components/ui/GlassCard'
 import AnimatedBackground from '../../components/backgrounds/AnimatedBackground'
 
@@ -26,8 +27,15 @@ const Portfolio = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white relative py-32">
-      <AnimatedBackground variant="purple" />
+    <>
+      <SEO
+        title="Portfolio - Our Work"
+        description="Explore our portfolio of successful projects. See how we've helped businesses transform their digital presence with modern web solutions."
+        keywords="portfolio, web design portfolio, web development projects, case studies, our work"
+        url="https://zunaweb.com/portfolio"
+      />
+      <div className="min-h-screen bg-black text-white relative py-32">
+        <AnimatedBackground variant="purple" />
       
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
@@ -118,6 +126,7 @@ const Portfolio = () => {
         )}
       </div>
     </div>
+    </>
   )
 }
 

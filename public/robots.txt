@@ -1,0 +1,30 @@
+# robots.txt for Zuna Web
+
+User-agent: *
+Allow: /
+
+# Disallow protected/user routes
+Disallow: /dashboard
+Disallow: /profile
+Disallow: /cart
+Disallow: /checkout
+Disallow: /orders
+Disallow: /notifications
+Disallow: /products/create
+Disallow: /products/edit/
+Disallow: /products/*/review
+
+# Allow important pages
+Allow: /
+Allow: /products
+Allow: /products/*
+Allow: /stories
+Allow: /stories/*
+Allow: /portfolio
+Allow: /services
+Allow: /about
+Allow: /pricing
+
+# Sitemap
+Sitemap: https://zunaweb.com/sitemap.xml
+

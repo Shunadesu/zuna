@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { FiCheck, FiArrowRight } from 'react-icons/fi'
 import { useCTA } from '../../context/CTAContext'
 import useDataStore from '../../store/dataStore'
+import SEO from '../../components/seo/SEO'
 import GlassCard from '../../components/ui/GlassCard'
 import AnimatedBackground from '../../components/backgrounds/AnimatedBackground'
 
@@ -28,8 +29,15 @@ const Services = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white relative py-32">
-      <AnimatedBackground variant="blue" />
+    <>
+      <SEO
+        title="Our Services - Digital Solutions"
+        description="Comprehensive digital solutions for your business. Web development, mobile apps, e-commerce, and more. Let us help transform your digital presence."
+        keywords="web development services, digital solutions, web design, mobile app development, e-commerce solutions"
+        url="https://zunaweb.com/services"
+      />
+      <div className="min-h-screen bg-black text-white relative py-32">
+        <AnimatedBackground variant="blue" />
       
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
@@ -82,6 +90,7 @@ const Services = () => {
         </div>
       </div>
     </div>
+    </>
   )
 }
 

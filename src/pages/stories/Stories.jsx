@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { FiClock, FiTag, FiArrowRight } from 'react-icons/fi'
 import useDataStore from '../../store/dataStore'
+import SEO from '../../components/seo/SEO'
 import GlassCard from '../../components/ui/GlassCard'
 import AnimatedBackground from '../../components/backgrounds/AnimatedBackground'
 
@@ -38,8 +39,15 @@ const Stories = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white relative py-32">
-      <AnimatedBackground variant="gradient" />
+    <>
+      <SEO
+        title="Stories & Blog - Latest Updates"
+        description="Read our latest stories, insights, and updates about web development, design trends, and digital solutions. Stay informed with Zuna Web blog."
+        keywords="blog, stories, web development blog, design blog, tech articles, web development insights"
+        url="https://zunaweb.com/stories"
+      />
+      <div className="min-h-screen bg-black text-white relative py-32">
+        <AnimatedBackground variant="gradient" />
       
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
@@ -139,6 +147,7 @@ const Stories = () => {
         )}
       </div>
     </div>
+    </>
   )
 }
 

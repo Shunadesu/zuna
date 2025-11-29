@@ -1,5 +1,6 @@
-import { FiCode, FiLayers, FiRocket, FiCheck, FiArrowRight } from 'react-icons/fi'
+import { FiCode, FiLayers, FiZap, FiCheck, FiArrowRight } from 'react-icons/fi'
 import { useCTA } from '../../context/CTAContext'
+import SEO from '../../components/seo/SEO'
 import AnimatedBackground from '../../components/backgrounds/AnimatedBackground'
 import SectionHeader from '../../components/ui/SectionHeader'
 import PricingCard from '../../components/ui/PricingCard'
@@ -60,7 +61,7 @@ const Pricing = () => {
       price: 'Custom',
       period: null,
       description: 'Tailored solutions for large enterprises with complex requirements',
-      icon: FiRocket,
+      icon: FiZap,
       iconColor: '#ec4899',
       features: [
         'Unlimited pages',
@@ -108,8 +109,15 @@ const Pricing = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-black text-white relative py-32">
-      <AnimatedBackground variant="purple" />
+    <>
+      <SEO
+        title="Web Development Pricing - Get a Quote"
+        description="Choose the perfect web development package for your business. Transparent pricing for Basic, Professional, and Enterprise solutions. Get a free quote today."
+        keywords="web development pricing, website cost, web design pricing, custom website price, web development packages, get quote"
+        url="https://zunaweb.com/pricing"
+      />
+      <div className="min-h-screen bg-black text-white relative py-32">
+        <AnimatedBackground variant="purple" />
       
       <div className="container mx-auto px-6 relative z-10">
         {/* Hero Section */}
@@ -227,6 +235,7 @@ const Pricing = () => {
         </section>
       </div>
     </div>
+    </>
   )
 }
 

@@ -1,5 +1,7 @@
 import { useEffect, useState } from 'react'
 import useDataStore from '../../store/dataStore'
+import SEO from '../../components/seo/SEO'
+import { generateWebsiteSchema, generateOrganizationSchema } from '../../utils/seo'
 import HeroSection from '../../components/home/HeroSection'
 import StatsSection from '../../components/home/StatsSection'
 import FeaturesSection from '../../components/home/FeaturesSection'
@@ -61,15 +63,28 @@ const Home = () => {
     fetchData()
   }, [fetchFeaturedProducts, fetchRecentStories, fetchStats])
 
+  const structuredData = [
+    generateOrganizationSchema(),
+    generateWebsiteSchema()
+  ]
+
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-blue-500/30 relative overflow-hidden">
-      <HeroSection />
-      <StatsSection stats={stats} />
-      <FeaturesSection />
-      <FeaturedProductsSection products={featuredProducts} />
-      <RecentStoriesSection stories={recentStories} />
-      <CTASection />
-    </div>
+    <>
+      <SEO
+        title="Premium Digital Marketplace"
+        description="Discover premium web templates, digital resources, and creative assets. Build your next project with our curated marketplace of high-quality products from expert designers and developers."
+        keywords="web templates, digital marketplace, website templates, WordPress themes, HTML templates, digital resources, creative assets, premium templates"
+        structuredData={structuredData}
+      />
+      <div className="min-h-screen bg-black text-white selection:bg-blue-500/30 relative overflow-hidden">
+        <HeroSection />
+        <StatsSection stats={stats} />
+        <FeaturesSection />
+        <FeaturedProductsSection products={featuredProducts} />
+        <RecentStoriesSection stories={recentStories} />
+        <CTASection />
+      </div>
+    </>
   )
 }
 

@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { FiLinkedin, FiGithub, FiMail } from 'react-icons/fi'
 import useDataStore from '../../store/dataStore'
+import SEO from '../../components/seo/SEO'
 import GlassCard from '../../components/ui/GlassCard'
 import AnimatedBackground from '../../components/backgrounds/AnimatedBackground'
 
@@ -27,8 +28,15 @@ const About = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white relative">
-      <AnimatedBackground variant="purple" />
+    <>
+      <SEO
+        title="About Us - Zuna Web Team"
+        description="Learn about Zuna Web - a team of passionate developers and designers creating digital solutions for modern businesses. Meet our team and see our work."
+        keywords="about zuna web, web development team, digital agency, web designers, developers, company"
+        url="https://zunaweb.com/about"
+      />
+      <div className="min-h-screen bg-black text-white relative">
+        <AnimatedBackground variant="purple" />
       
       {/* Hero */}
       <section className="relative py-32">
@@ -147,6 +155,7 @@ const About = () => {
         </section>
       )}
     </div>
+    </>
   )
 }
 
