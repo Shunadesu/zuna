@@ -32,8 +32,8 @@ const HeroSection = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-          <GradientButton to="/products" variant="primary">
-            Marketplace
+          <GradientButton to="/book-call" variant="primary">
+            Book a Call
           </GradientButton>
           <button
             onClick={openCTA}
@@ -47,7 +47,7 @@ const HeroSection = () => {
         </div>
       </div>
 
-      <ScrollIndicator />
+      {/* <ScrollIndicator /> */}
     </section>
   )
 }

@@ -10,6 +10,7 @@ import About from './pages/public/About'
 import Services from './pages/public/Services'
 import Portfolio from './pages/public/Portfolio'
 import Pricing from './pages/pricing/Pricing'
+import BookCall from './pages/public/BookCall'
 
 // Products pages
 import Products from './pages/products/Products'
@@ -45,6 +46,7 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/pricing" element={<Pricing />} />
+            <Route path="/book-call" element={<BookCall />} />
             
             {/* Products Routes */}
             <Route path="/products" element={<Products />} />

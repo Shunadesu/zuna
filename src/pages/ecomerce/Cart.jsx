@@ -21,12 +21,12 @@ const Cart = () => {
 
   if (items.length === 0) {
     return (
-      <div className="min-h-screen bg-black text-white relative py-32">
+      <div className="min-h-screen bg-black text-white relative py-20 md:py-28">
         <AnimatedBackground variant="purple" />
         
-        <div className="container mx-auto px-6 relative z-10">
+        <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10">
           <div className="max-w-2xl mx-auto">
-            <GlassCard className="text-center p-12 md:p-16">
+            <GlassCard className="text-center p-8 md:p-10">
               <div className="mb-8 flex justify-center">
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 rounded-full blur-2xl opacity-30 animate-pulse"></div>
@@ -64,13 +64,13 @@ const Cart = () => {
   }
 
   return (
-    <div className="min-h-screen bg-black text-white relative py-32">
+    <div className="min-h-screen bg-black text-white relative py-20 md:py-28">
       <AnimatedBackground variant="cyan" />
       
-      <div className="container mx-auto px-6 relative z-10">
+      <div className="container mx-auto px-4 md:px-6 max-w-7xl relative z-10">
         {/* Header */}
-        <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Giỏ Hàng</h1>
+        <div className="mb-8 md:mb-10">
+          <h1 className="text-3xl md:text-4xl font-bold mb-2">Giỏ Hàng</h1>
           <p className="text-white/60 text-lg">
             {items.length} {items.length === 1 ? 'sản phẩm' : 'sản phẩm'} trong giỏ hàng
           </p>

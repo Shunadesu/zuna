@@ -8,17 +8,17 @@ const SEO = ({
   image,
   url,
   type = 'website',
-  siteName = 'Zuna Web',
+  siteName = 'Zuna Media',
   author,
   publishedTime,
   modifiedTime,
   structuredData
 }) => {
   const location = useLocation()
-  const baseUrl = import.meta.env.VITE_SITE_URL || 'https://zunaweb.com'
+  const baseUrl = import.meta.env.VITE_SITE_URL || 'https://zuna.media'
   const fullUrl = url || `${baseUrl}${location.pathname}`
   const ogImage = image || `${baseUrl}/og-image.jpg`
-  const fullTitle = title ? `${title} | ${siteName}` : `${siteName} - Digital Solutions & Marketplace`
+  const fullTitle = title ? `${title} | ${siteName}` : `${siteName} - Digital Marketplace & Solutions`
 
   useEffect(() => {
     // Update document title

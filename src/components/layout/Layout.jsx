@@ -14,12 +14,15 @@ import { useCTA } from '../../context/CTAContext'
 import api from '../../utils/api'
 import AuthModal from '../auth/AuthModal'
 import Logo from './Logo'
+import CartSidebar from '../ui/CartSidebar'
+import FluidCTA from '../sections/FluidCTA'
 
 const Layout = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [unreadCount, setUnreadCount] = useState(0)
   const [authModalOpen, setAuthModalOpen] = useState(false)
   const [authModalMode, setAuthModalMode] = useState('login') // 'login' or 'register'
+  const [cartSidebarOpen, setCartSidebarOpen] = useState(false)
   const location = useLocation()
   const { isAuthenticated, user, logout } = useAuthStore()
   const { getItemCount } = useCartStore()
@@ -57,19 +60,39 @@ const Layout = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      setIsScrolled(window.scrollY > 20)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Close cart sidebar on route change
+  useEffect(() => {
+    setCartSidebarOpen(false)
+  }, [location.pathname])
+
   return (
     <div className="min-h-screen flex flex-col bg-black text-white">
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 px-6 py-4 ${isScrolled ? 'py-4' : 'py-6'}`}>
-        <div className={`max-w-7xl mx-auto rounded-full transition-all duration-300 flex items-center justify-between px-6 py-3 glass bg-black/40`}>
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? 'py-2' 
+          : 'py-4 md:py-6'
+      }`}>
+        <div 
+          className={` mx-auto rounded-full transition-all duration-500 flex items-center justify-between ${
+            isScrolled 
+              ? 'max-w-[1080px] px-4 md:px-6 py-2 md:py-2.5 glass bg-black/50 backdrop-blur-xl' 
+              : 'max-w-[1440px] px-6 md:px-10 py-3 glass bg-black/30 backdrop-blur-2xl'
+          }`}
+          style={{
+            boxShadow: isScrolled 
+              ? 'inset 0 1px 0 0 rgba(255,255,255,0.2), 0 2px 8px 0 rgba(0,0,0,0.16)' 
+              : 'none'
+          }}
+        >
           {/* Logo */}
-          <Logo />
+          <Logo isScrolled={isScrolled} />
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
@@ -91,17 +114,17 @@ const Layout = () => {
           {/* Right Side */}
           <div className="flex items-center gap-4">
             {/* Cart Icon */}
-            <Link
-              to="/cart"
-              className="relative p-2 text-white/70 transition-all duration-300 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:via-purple-400 hover:to-pink-400"
+            <button
+              onClick={() => setCartSidebarOpen(true)}
+              className="relative p-2 text-white/70 transition-all duration-300 hover:text-white"
             >
               <FiShoppingBag className="w-6 h-6" />
               {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-gradient-to-r from-cyan-500 to-pink-500 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-semibold">
                   {cartCount}
                 </span>
               )}
-            </Link>
+            </button>
 
             {isAuthenticated ? (
               <>
@@ -135,7 +158,7 @@ const Layout = () => {
               </>
             ) : (
               <>
-                <button
+                {/* <button
                   onClick={() => {
                     setAuthModalMode('login')
                     setAuthModalOpen(true)
@@ -143,7 +166,7 @@ const Layout = () => {
                   className="hidden md:block px-4 py-2 text-white/70 hover:text-white transition-colors text-sm font-medium"
                 >
                   Đăng Nhập
-                </button>
+                </button> */}
                 <button
                   onClick={() => {
                     // Mở CTA modal trực tiếp, không cần scroll
@@ -158,7 +181,9 @@ const Layout = () => {
                       openCTA()
                     }
                   }}
-                  className="hidden md:block px-5 py-2 rounded-full text-sm font-semibold text-white transition-all hover:scale-105"
+                  className={`hidden md:block px-5 py-2 text-sm font-semibold text-white transition-all hover:scale-105 ${
+                    isScrolled ? 'rounded-full' : 'rounded-full'
+                  }`}
                   style={{
                     background: 'linear-gradient(135deg, #06b6d4 0%, #8b5cf6 50%, #ec4899 100%)',
                     boxShadow: '0 0 20px -5px rgba(139, 92, 246, 0.4)'
@@ -213,7 +238,10 @@ const Layout = () => {
                 <>
                   <Link
                     to="/cart"
-                    onClick={() => setMobileMenuOpen(false)}
+                    onClick={() => {
+                      setMobileMenuOpen(false)
+                      setCartSidebarOpen(true)
+                    }}
                     className="text-3xl font-light text-white/70 hover:text-blue-400 transition-colors"
                   >
                     Giỏ Hàng {cartCount > 0 && `(${cartCount})`}
@@ -276,6 +304,9 @@ const Layout = () => {
         <Outlet />
       </main>
 
+      {/* Fluid CTA - Available on all pages */}
+      <FluidCTA />
+
       {/* Footer */}
       <footer className="relative pt-32 pb-12 overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent" />
@@ -312,16 +343,16 @@ const Layout = () => {
               <h4 className="font-semibold mb-6">Liên Hệ</h4>
               <p className="text-white/60 mb-4">Bạn có dự án trong đầu?</p>
               <a 
-                href="mailto:hello@zunaweb.com" 
+                href="mailto:hello@zuna.media" 
                 className="text-xl font-medium hover:text-blue-400 transition-colors"
               >
-                hello@zunaweb.com
+                hello@zuna.media
               </a>
             </div>
           </div>
           
           <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 text-sm text-white/40">
-            <p>&copy; 2024 Zuna Web. Mọi quyền được bảo lưu.</p>
+            <p>&copy; 2026 Zuna Media. Mọi quyền được bảo lưu.</p>
             <div className="flex items-center gap-6 mt-4 md:mt-0">
               <Link to="#" className="hover:text-white transition-colors">Chính Sách Bảo Mật</Link>
               <Link to="#" className="hover:text-white transition-colors">Điều Khoản Dịch Vụ</Link>
@@ -336,6 +367,29 @@ const Layout = () => {
         onClose={() => setAuthModalOpen(false)}
         initialMode={authModalMode}
       />
+
+      {/* Cart Sidebar */}
+      <CartSidebar
+        isOpen={cartSidebarOpen}
+        onClose={() => setCartSidebarOpen(false)}
+      />
+
+      {/* Floating Login Button */}
+      {!isAuthenticated && (
+        <button
+          onClick={() => {
+            setAuthModalMode('login')
+            setAuthModalOpen(true)
+          }}
+          className="fixed bottom-6 left-6 z-50 w-12 h-12 rounded-full glass bg-black/50 backdrop-blur-xl flex items-center justify-center text-white/70 hover:text-white hover:scale-110 transition-all duration-300"
+          style={{
+            boxShadow: 'inset 0 1px 0 0 rgba(255,255,255,0.2), 0 2px 8px 0 rgba(0,0,0,0.16)'
+          }}
+          aria-label="Đăng nhập"
+        >
+          <FiUser className="w-5 h-5" />
+        </button>
+      )}
     </div>
   )
 }
