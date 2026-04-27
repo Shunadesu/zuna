@@ -28,8 +28,8 @@ const ProductDetail = () => {
 
   const fetchProduct = async () => {
     try {
-      const response = await api.get(`/products/${slug}`)
-      setProduct(response.data.data)
+      const response = await api.get(`/public/products/${slug}`)
+      setProduct(response.data.data?.product || response.data.data)
       setLoading(false)
     } catch (error) {
       console.error('Error fetching product:', error)
@@ -40,8 +40,8 @@ const ProductDetail = () => {
   const fetchReviews = async () => {
     if (!product?._id) return
     try {
-      const response = await api.get(`/reviews/products/${product._id}`)
-      setReviews(response.data.data?.reviews || [])
+      const response = await api.get(`/public/reviews/products/${product._id}`)
+      setReviews(response.data.data?.reviews || response.data.data || [])
     } catch (error) {
       console.error('Error fetching reviews:', error)
     }
@@ -53,7 +53,7 @@ const ProductDetail = () => {
       return
     }
     // TODO: Implement cart functionality
-    alert('Added to cart!')
+    alert('Đã thêm vào giỏ hàng!')
   }
 
   if (loading) {
@@ -61,7 +61,7 @@ const ProductDetail = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-          <p className="mt-4 text-gray-600">Loading product...</p>
+          <p className="mt-4 text-gray-600">Đang tải sản phẩm...</p>
         </div>
       </div>
     )
@@ -71,9 +71,9 @@ const ProductDetail = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">Product not found</h2>
+          <h2 className="text-2xl font-bold mb-4">Không tìm thấy sản phẩm</h2>
           <Link to="/products" className="btn-primary">
-            Back to Products
+            Quay lại Sản Phẩm
           </Link>
         </div>
       </div>
@@ -81,8 +81,8 @@ const ProductDetail = () => {
   }
 
   const breadcrumbItems = [
-    { name: 'Home', url: 'https://zunaweb.com/' },
-    { name: 'Products', url: 'https://zunaweb.com/products' },
+    { name: 'Trang Chủ', url: 'https://zunaweb.com/' },
+    { name: 'Sản Phẩm', url: 'https://zunaweb.com/products' },
     { name: product.title, url: `https://zunaweb.com/products/${product.slug}` }
   ]
 
@@ -107,9 +107,9 @@ const ProductDetail = () => {
           {/* Breadcrumb */}
           <nav className="mb-8 text-sm" aria-label="Breadcrumb">
             <ol className="flex items-center space-x-2">
-              <li><Link to="/" className="text-gray-500 hover:text-primary-600">Home</Link></li>
+              <li><Link to="/" className="text-gray-500 hover:text-primary-600">Trang Chủ</Link></li>
               <li><span className="mx-2 text-gray-400">/</span></li>
-              <li><Link to="/products" className="text-gray-500 hover:text-primary-600">Products</Link></li>
+              <li><Link to="/products" className="text-gray-500 hover:text-primary-600">Sản Phẩm</Link></li>
               <li><span className="mx-2 text-gray-400">/</span></li>
               <li><span className="text-gray-900" aria-current="page">{product.title}</span></li>
             </ol>
@@ -153,7 +153,7 @@ const ProductDetail = () => {
                 <span className="text-sm text-primary-600 font-semibold">{product.category}</span>
                 {product.featured && (
                   <span className="ml-2 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-xs font-semibold">
-                    Featured
+                    Nổi Bật
                   </span>
                 )}
               </div>
@@ -167,11 +167,11 @@ const ProductDetail = () => {
                     {product.rating?.average?.toFixed(1) || '0.0'}
                   </span>
                   <span className="ml-2 text-gray-600">
-                    ({product.rating?.count || 0} reviews)
+                    ({product.rating?.count || 0} đánh giá)
                   </span>
                 </div>
                 <span className="text-gray-400">•</span>
-                <span className="text-gray-600">{product.salesCount || 0} sales</span>
+                <span className="text-gray-600">{product.salesCount || 0} đã bán</span>
               </div>
 
               <div className="mb-6">
@@ -200,7 +200,7 @@ const ProductDetail = () => {
               {/* Features */}
               {product.features && product.features.length > 0 && (
                 <div className="mb-8">
-                  <h3 className="font-semibold mb-4">Features</h3>
+                  <h3 className="font-semibold mb-4">Tính Năng</h3>
                   <ul className="space-y-2">
                     {product.features.map((feature, index) => (
                       <li key={index} className="flex items-center text-gray-700">
@@ -215,7 +215,7 @@ const ProductDetail = () => {
               {/* Technologies */}
               {product.technologies && product.technologies.length > 0 && (
                 <div className="mb-8">
-                  <h3 className="font-semibold mb-4">Technologies</h3>
+                  <h3 className="font-semibold mb-4">Công Nghệ</h3>
                   <div className="flex flex-wrap gap-2">
                     {product.technologies.map((tech, index) => (
                       <span
@@ -253,7 +253,7 @@ const ProductDetail = () => {
                   className="flex-1 btn-primary flex items-center justify-center space-x-2"
                 >
                   <FiShoppingCart className="w-5 h-5" />
-                  <span>Add to Cart</span>
+                  <span>Thêm Vào Giỏ</span>
                 </button>
                 <button className="px-6 py-3 border-2 border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
                   <FiHeart className="w-5 h-5" />
@@ -267,7 +267,7 @@ const ProductDetail = () => {
                   rel="noopener noreferrer"
                   className="block mt-4 text-center btn-secondary"
                 >
-                  View Demo
+                  Xem Thử Nghiệm
                 </a>
               )}
             </div>
@@ -277,25 +277,25 @@ const ProductDetail = () => {
         {/* Reviews Section */}
         <div className="bg-white rounded-xl p-8">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">Reviews</h2>
+            <h2 className="text-2xl font-bold">Đánh Giá</h2>
             {isAuthenticated && (
               <Link
                 to={`/products/${product.slug}/review`}
                 className="btn-secondary text-sm"
               >
-                Write Review
+                Viết Đánh Giá
               </Link>
             )}
           </div>
           {reviews.length === 0 ? (
             <div className="text-center py-8">
-              <p className="text-gray-600 mb-4">No reviews yet. Be the first to review!</p>
+              <p className="text-gray-600 mb-4">Chưa có đánh giá nào. Hãy là người đầu tiên đánh giá!</p>
               {isAuthenticated && (
                 <Link
                   to={`/products/${product.slug}/review`}
                   className="btn-primary"
                 >
-                  Write First Review
+                  Viết Đánh Giá Đầu Tiên
                 </Link>
               )}
             </div>
@@ -312,7 +312,7 @@ const ProductDetail = () => {
                         <span className="font-semibold">{review.user?.username}</span>
                         {review.verified && (
                           <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded">
-                            Verified Purchase
+                            Đã Xác Minh Mua Hàng
                           </span>
                         )}
                       </div>

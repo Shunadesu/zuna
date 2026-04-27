@@ -48,7 +48,7 @@ const Checkout = () => {
         notes
       }
 
-      const response = await api.post('/orders', orderData)
+      const response = await api.post('/client/orders', orderData)
       const order = response.data.data
 
       // Clear cart
@@ -68,14 +68,14 @@ const Checkout = () => {
     { id: 'momo', name: 'MoMo', icon: '💳' },
     { id: 'vnpay', name: 'VNPay', icon: '💳' },
     { id: 'zalopay', name: 'ZaloPay', icon: '💳' },
-    { id: 'bank_transfer', name: 'Bank Transfer', icon: '🏦' }
+    { id: 'bank_transfer', name: 'Chuyển Khoản Ngân Hàng', icon: '🏦' }
   ]
 
   return (
     <ProtectedRoute>
       <div className="min-h-screen bg-gray-50 py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold mb-8">Checkout</h1>
+          <h1 className="text-3xl font-bold mb-8">Thanh Toán</h1>
 
           {/* Progress Steps */}
           <div className="mb-8">
@@ -97,13 +97,13 @@ const Checkout = () => {
             </div>
             <div className="flex justify-between mt-2 text-sm">
               <span className={step >= 1 ? 'text-primary-600 font-semibold' : 'text-gray-500'}>
-                Shipping
+                Vận Chuyển
               </span>
               <span className={step >= 2 ? 'text-primary-600 font-semibold' : 'text-gray-500'}>
-                Payment
+                Thanh Toán
               </span>
               <span className={step >= 3 ? 'text-primary-600 font-semibold' : 'text-gray-500'}>
-                Review
+                Xem Lại
               </span>
             </div>
           </div>
@@ -113,11 +113,11 @@ const Checkout = () => {
             <div className="lg:col-span-2">
               {step === 1 && (
                 <form onSubmit={handleShippingSubmit} className="bg-white rounded-xl shadow-md p-6 space-y-6">
-                  <h2 className="text-2xl font-bold mb-4">Shipping Information</h2>
+                  <h2 className="text-2xl font-bold mb-4">Thông Tin Vận Chuyển</h2>
                   
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Full Name *
+                      Họ Tên Đầy Đủ *
                     </label>
                     <input
                       type="text"
@@ -143,7 +143,7 @@ const Checkout = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Phone *
+                        Số Điện Thoại *
                       </label>
                       <input
                         type="tel"
@@ -157,7 +157,7 @@ const Checkout = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Address *
+                      Địa Chỉ *
                     </label>
                     <input
                       type="text"
@@ -171,7 +171,7 @@ const Checkout = () => {
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        City *
+                        Thành Phố *
                       </label>
                       <input
                         type="text"
@@ -183,7 +183,7 @@ const Checkout = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Country *
+                        Quốc Gia *
                       </label>
                       <input
                         type="text"
@@ -195,7 +195,7 @@ const Checkout = () => {
                     </div>
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-2">
-                        ZIP Code
+                        Mã Bưu Điện
                       </label>
                       <input
                         type="text"
@@ -208,26 +208,26 @@ const Checkout = () => {
 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Notes (Optional)
+                      Ghi Chú (Tùy Chọn)
                     </label>
                     <textarea
                       rows={3}
                       value={notes}
                       onChange={(e) => setNotes(e.target.value)}
                       className="input-field"
-                      placeholder="Any special instructions..."
+                      placeholder="Bất kỳ hướng dẫn đặc biệt nào..."
                     />
                   </div>
 
                   <button type="submit" className="w-full btn-primary">
-                    Continue to Payment
+                    Tiếp Tục Thanh Toán
                   </button>
                 </form>
               )}
 
               {step === 2 && (
                 <form onSubmit={handlePaymentSubmit} className="bg-white rounded-xl shadow-md p-6 space-y-6">
-                  <h2 className="text-2xl font-bold mb-4">Payment Method</h2>
+                  <h2 className="text-2xl font-bold mb-4">Phương Thức Thanh Toán</h2>
                   
                   <div className="space-y-3">
                     {paymentMethods.map((method) => (
@@ -259,14 +259,14 @@ const Checkout = () => {
                       onClick={() => setStep(1)}
                       className="flex-1 btn-secondary"
                     >
-                      Back
+                      Quay Lại
                     </button>
                     <button
                       type="submit"
                       disabled={loading}
                       className="flex-1 btn-primary disabled:opacity-50"
                     >
-                      {loading ? 'Processing...' : 'Place Order'}
+                      {loading ? 'Đang xử lý...' : 'Đặt Hàng'}
                     </button>
                   </div>
                 </form>
@@ -276,7 +276,7 @@ const Checkout = () => {
             {/* Order Summary */}
             <div className="lg:col-span-1">
               <div className="bg-white rounded-xl shadow-md p-6 sticky top-4">
-                <h2 className="text-xl font-bold mb-6">Order Summary</h2>
+                <h2 className="text-xl font-bold mb-6">Tóm Tắt Đơn Hàng</h2>
                 
                 <div className="space-y-4 mb-6">
                   {items.map((item) => (
@@ -296,22 +296,22 @@ const Checkout = () => {
 
                 <div className="border-t pt-4 space-y-2">
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Subtotal</span>
+                    <span className="text-gray-600">Tổng Phụ</span>
                     <span className="font-semibold">${subtotal.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-gray-600">Tax (10%)</span>
+                    <span className="text-gray-600">Thuế (10%)</span>
                     <span className="font-semibold">${tax.toFixed(2)}</span>
                   </div>
                   <div className="flex justify-between pt-2 border-t">
-                    <span className="text-lg font-bold">Total</span>
+                    <span className="text-lg font-bold">Tổng Cộng</span>
                     <span className="text-lg font-bold gradient-text">${total.toFixed(2)}</span>
                   </div>
                 </div>
 
                 <div className="mt-6 flex items-center text-sm text-gray-600">
                   <FiLock className="w-4 h-4 mr-2" />
-                  <span>Secure checkout</span>
+                  <span>Thanh toán bảo mật</span>
                 </div>
               </div>
             </div>

@@ -30,9 +30,9 @@ const About = () => {
   return (
     <>
       <SEO
-        title="About Us - Zuna Web Team"
-        description="Learn about Zuna Web - a team of passionate developers and designers creating digital solutions for modern businesses. Meet our team and see our work."
-        keywords="about zuna web, web development team, digital agency, web designers, developers, company"
+        title="Về Chúng Tôi - Đội Ngũ Zuna Web"
+        description="Tìm hiểu về Zuna Web - một đội ngũ các nhà phát triển và nhà thiết kế đam mê tạo ra các giải pháp số cho doanh nghiệp hiện đại. Gặp gỡ đội ngũ của chúng tôi và xem các công việc của chúng tôi."
+        keywords="về zuna web, đội ngũ phát triển web, đại lý số, nhà thiết kế web, nhà phát triển, công ty"
         url="https://zunaweb.com/about"
       />
       <div className="min-h-screen bg-black text-white relative">
@@ -41,11 +41,11 @@ const About = () => {
       {/* Hero */}
       <section className="relative py-32">
         <div className="container mx-auto px-6 text-center relative z-10">
-          <h1 className="section-title">About Zuna Web</h1>
+          <h1 className="section-title">Về Zuna Web</h1>
           <div className="h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full w-24 mx-auto mb-6" />
           <p className="section-subtitle">
-            We are a team of passionate developers and designers creating 
-            digital solutions for modern businesses.
+            Chúng tôi là đội ngũ các nhà phát triển và nhà thiết kế đam mê tạo ra
+            các giải pháp số cho doanh nghiệp hiện đại.
           </p>
         </div>
       </section>
@@ -55,7 +55,7 @@ const About = () => {
         <section className="py-32 relative">
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-20">
-              <h2 className="section-title">Our Team</h2>
+              <h2 className="section-title">Đội Ngũ Của Chúng Tôi</h2>
               <div className="h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full w-24 mx-auto mb-6" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -104,7 +104,7 @@ const About = () => {
           
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-20">
-              <h2 className="section-title">What Our Clients Say</h2>
+              <h2 className="section-title">Khách Hàng Nói Gì Về Chúng Tôi</h2>
               <div className="h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full w-24 mx-auto mb-6" />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -137,7 +137,7 @@ const About = () => {
         <section className="py-32 relative">
           <div className="container mx-auto px-6 relative z-10">
             <div className="text-center mb-20">
-              <h2 className="section-title">Our Clients</h2>
+              <h2 className="section-title">Khách Hàng Của Chúng Tôi</h2>
               <div className="h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full w-24 mx-auto mb-6" />
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">

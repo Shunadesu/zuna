@@ -27,7 +27,7 @@ const useAuthStore = create(
         } catch (error) {
           return {
             success: false,
-            error: error.response?.data?.error?.message || 'Login failed'
+            error: error.response?.data?.error?.message || 'Đăng nhập thất bại'
           }
         }
       },
@@ -53,7 +53,7 @@ const useAuthStore = create(
         } catch (error) {
           return {
             success: false,
-            error: error.response?.data?.error?.message || 'Registration failed'
+            error: error.response?.data?.error?.message || 'Đăng ký thất bại'
           }
         }
       },

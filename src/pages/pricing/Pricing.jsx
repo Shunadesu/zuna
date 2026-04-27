@@ -12,75 +12,75 @@ const Pricing = () => {
   const pricingPlans = [
     {
       plan: 'Basic',
-      name: 'Starter Package',
+      name: 'Gói Khởi Đầu',
       price: '$2,999',
-      period: 'project',
-      description: 'Perfect for small businesses and startups looking to establish their online presence',
+      period: 'dự án',
+      description: 'Hoàn hảo cho doanh nghiệp nhỏ và startup muốn thiết lập sự hiện diện trực tuyến',
       icon: FiCode,
       iconColor: '#06b6d4',
       features: [
-        'Up to 5 pages website',
-        'Responsive design (Mobile, Tablet, Desktop)',
-        'Basic SEO optimization',
-        'Contact form integration',
-        'Social media integration',
-        'Basic analytics setup',
-        '1 month free support',
-        'Source code delivery',
-        'Basic documentation'
+        'Website lên đến 5 trang',
+        'Thiết kế responsive (Điện thoại, Máy tính bảng, Desktop)',
+        'Tối ưu SEO cơ bản',
+        'Tích hợp biểu mẫu liên hệ',
+        'Tích hợp mạng xã hội',
+        'Thiết lập phân tích cơ bản',
+        '1 tháng hỗ trợ miễn phí',
+        'Giao mã nguồn',
+        'Tài liệu cơ bản'
       ]
     },
     {
       plan: 'Professional',
-      name: 'Business Package',
+      name: 'Gói Doanh Nghiệp',
       price: '$5,999',
-      period: 'project',
-      description: 'Ideal for growing businesses that need advanced features and functionality',
+      period: 'dự án',
+      description: 'Lý tưởng cho doanh nghiệp đang phát triển cần các tính năng và chức năng nâng cao',
       icon: FiLayers,
       iconColor: '#8b5cf6',
       popular: true,
       features: [
-        'Up to 15 pages website',
-        'Custom design & branding',
-        'Advanced SEO optimization',
-        'Content Management System (CMS)',
-        'E-commerce integration (up to 50 products)',
-        'Payment gateway integration',
-        'User authentication system',
-        'Advanced analytics & reporting',
-        '3 months free support',
-        'Source code delivery',
-        'Comprehensive documentation',
-        'Performance optimization',
-        'Security features'
+        'Website lên đến 15 trang',
+        'Thiết kế & thương hiệu tùy chỉnh',
+        'Tối ưu SEO nâng cao',
+        'Hệ thống quản lý nội dung (CMS)',
+        'Tích hợp thương mại điện tử (lên đến 50 sản phẩm)',
+        'Tích hợp cổng thanh toán',
+        'Hệ thống xác thực người dùng',
+        'Phân tích & báo cáo nâng cao',
+        '3 tháng hỗ trợ miễn phí',
+        'Giao mã nguồn',
+        'Tài liệu toàn diện',
+        'Tối ưu hiệu suất',
+        'Tính năng bảo mật'
       ]
     },
     {
       plan: 'Enterprise',
-      name: 'Premium Package',
-      price: 'Custom',
+      name: 'Gói Cao Cấp',
+      price: 'Tùy chỉnh',
       period: null,
-      description: 'Tailored solutions for large enterprises with complex requirements',
+      description: 'Giải pháp tùy chỉnh cho doanh nghiệp lớn với yêu cầu phức tạp',
       icon: FiZap,
       iconColor: '#ec4899',
       features: [
-        'Unlimited pages',
-        'Fully custom design & development',
-        'Enterprise-grade SEO',
-        'Advanced CMS with custom features',
-        'Full e-commerce solution',
-        'Multiple payment gateways',
-        'Advanced user management',
-        'API integration',
-        'Third-party integrations',
-        'Custom features & functionality',
-        '6 months free support',
-        'Priority support & maintenance',
-        'Source code delivery',
-        'Full documentation & training',
-        'Performance & security optimization',
-        'Scalable architecture',
-        'Dedicated project manager'
+        'Không giới hạn trang',
+        'Thiết kế & phát triển tùy chỉnh hoàn toàn',
+        'SEO cấp doanh nghiệp',
+        'CMS nâng cao với tính năng tùy chỉnh',
+        'Giải pháp thương mại điện tử đầy đủ',
+        'Nhiều cổng thanh toán',
+        'Quản lý người dùng nâng cao',
+        'Tích hợp API',
+        'Tích hợp bên thứ ba',
+        'Tính năng & chức năng tùy chỉnh',
+        '6 tháng hỗ trợ miễn phí',
+        'Hỗ trợ & bảo trì ưu tiên',
+        'Giao mã nguồn',
+        'Tài liệu & đào tạo đầy đủ',
+        'Tối ưu hiệu suất & bảo mật',
+        'Kiến trúc có thể mở rộng',
+        'Quản lý dự án chuyên dụng'
       ]
     }
   ]
@@ -88,32 +88,32 @@ const Pricing = () => {
   const additionalServices = [
     {
       title: 'Domain & Hosting',
-      description: 'We can help you set up and manage your domain and hosting',
-      price: 'Starting at $99/year'
+      description: 'Chúng tôi có thể giúp bạn thiết lập và quản lý domain và hosting',
+      price: 'Bắt đầu từ $99/năm'
     },
     {
-      title: 'Maintenance & Updates',
-      description: 'Ongoing maintenance, updates, and technical support',
-      price: 'Starting at $199/month'
+      title: 'Bảo Trì & Cập Nhật',
+      description: 'Bảo trì, cập nhật và hỗ trợ kỹ thuật liên tục',
+      price: 'Bắt đầu từ $199/tháng'
     },
     {
-      title: 'SEO Services',
-      description: 'Advanced SEO optimization and content strategy',
-      price: 'Starting at $299/month'
+      title: 'Dịch Vụ SEO',
+      description: 'Tối ưu SEO nâng cao và chiến lược nội dung',
+      price: 'Bắt đầu từ $299/tháng'
     },
     {
-      title: 'Custom Features',
-      description: 'Additional custom features and functionality',
-      price: 'Custom pricing'
+      title: 'Tính Năng Tùy Chỉnh',
+      description: 'Các tính năng và chức năng tùy chỉnh bổ sung',
+      price: 'Giá tùy chỉnh'
     }
   ]
 
   return (
     <>
       <SEO
-        title="Web Development Pricing - Get a Quote"
-        description="Choose the perfect web development package for your business. Transparent pricing for Basic, Professional, and Enterprise solutions. Get a free quote today."
-        keywords="web development pricing, website cost, web design pricing, custom website price, web development packages, get quote"
+        title="Báo Giá Phát Triển Web - Nhận Báo Giá"
+        description="Chọn gói phát triển web hoàn hảo cho doanh nghiệp của bạn. Báo giá minh bạch cho các giải pháp Basic, Professional và Enterprise. Nhận báo giá miễn phí hôm nay."
+        keywords="báo giá phát triển web, chi phí website, báo giá thiết kế web, giá website tùy chỉnh, gói phát triển web, nhận báo giá"
         url="https://zunaweb.com/pricing"
       />
       <div className="min-h-screen bg-black text-white relative py-32">
@@ -122,8 +122,8 @@ const Pricing = () => {
       <div className="container mx-auto px-6 relative z-10">
         {/* Hero Section */}
         <SectionHeader
-          title="Web Development Pricing"
-          subtitle="Choose the perfect package for your business needs. All packages include modern design, responsive layout, and professional development."
+          title="Báo Giá Phát Triển Web"
+          subtitle="Chọn gói hoàn hảo cho nhu cầu doanh nghiệp của bạn. Tất cả các gói bao gồm thiết kế hiện đại, bố cục responsive và phát triển chuyên nghiệp."
         />
 
         {/* Pricing Cards */}
@@ -136,10 +136,10 @@ const Pricing = () => {
         {/* Additional Services */}
         <section className="mb-32">
           <div className="text-center mb-16">
-            <h2 className="section-title">Additional Services</h2>
+            <h2 className="section-title">Dịch Vụ Bổ Sung</h2>
             <div className="h-1 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-full w-24 mx-auto mb-6" />
             <p className="section-subtitle">
-              Enhance your website with our additional services
+              Nâng cao website của bạn với các dịch vụ bổ sung của chúng tôi
             </p>
           </div>
 
@@ -167,35 +167,35 @@ const Pricing = () => {
         {/* FAQ Section */}
         <section className="mb-32">
           <div className="text-center mb-16">
-            <h2 className="section-title">Frequently Asked Questions</h2>
+            <h2 className="section-title">Câu Hỏi Thường Gặp</h2>
             <div className="h-1 bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 rounded-full w-24 mx-auto mb-6" />
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
             {[
               {
-                q: 'What is included in the price?',
-                a: 'All packages include design, development, responsive layout, basic SEO, and source code delivery. Higher packages include additional features like CMS, e-commerce, and extended support.'
+                q: 'Giá bao gồm những gì?',
+                a: 'Tất cả các gói bao gồm thiết kế, phát triển, bố cục responsive, SEO cơ bản và giao mã nguồn. Các gói cao hơn bao gồm các tính năng bổ sung như CMS, thương mại điện tử và hỗ trợ mở rộng.'
               },
               {
-                q: 'How long does development take?',
-                a: 'Basic package: 2-3 weeks, Professional: 4-6 weeks, Enterprise: 8-12 weeks. Timeline depends on project complexity and requirements.'
+                q: 'Phát triển mất bao lâu?',
+                a: 'Gói Basic: 2-3 tuần, Professional: 4-6 tuần, Enterprise: 8-12 tuần. Thời gian phụ thuộc vào độ phức tạp và yêu cầu của dự án.'
               },
               {
-                q: 'Do you provide hosting?',
-                a: 'We can help you set up hosting and domain. Hosting is available as an additional service starting at $99/year.'
+                q: 'Bạn có cung cấp hosting không?',
+                a: 'Chúng tôi có thể giúp bạn thiết lập hosting và domain. Hosting có sẵn như một dịch vụ bổ sung bắt đầu từ $99/năm.'
               },
               {
-                q: 'Can I upgrade my package later?',
-                a: 'Yes, you can upgrade to a higher package at any time. We will adjust the pricing accordingly.'
+                q: 'Tôi có thể nâng cấp gói sau này không?',
+                a: 'Có, bạn có thể nâng cấp lên gói cao hơn bất kỳ lúc nào. Chúng tôi sẽ điều chỉnh giá tương ứng.'
               },
               {
-                q: 'What payment methods do you accept?',
-                a: 'We accept bank transfers, credit cards, and PayPal. Payment terms are typically 50% upfront and 50% upon completion.'
+                q: 'Bạn chấp nhận phương thức thanh toán nào?',
+                a: 'Chúng tôi chấp nhận chuyển khoản ngân hàng, thẻ tín dụng và PayPal. Điều khoản thanh toán thường là 50% trả trước và 50% khi hoàn thành.'
               },
               {
-                q: 'Do you offer maintenance after launch?',
-                a: 'Yes, we offer maintenance and support packages starting at $199/month. All packages include free support for the specified period.'
+                q: 'Bạn có cung cấp bảo trì sau khi ra mắt không?',
+                a: 'Có, chúng tôi cung cấp các gói bảo trì và hỗ trợ bắt đầu từ $199/tháng. Tất cả các gói bao gồm hỗ trợ miễn phí trong thời gian quy định.'
               }
             ].map((faq, index) => (
               <GlassCard key={index}>
@@ -213,22 +213,22 @@ const Pricing = () => {
         {/* CTA Section */}
         <section>
           <GlassCard className="text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Ready to Get Started?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Sẵn Sàng Bắt Đầu?</h2>
             <p className="text-xl mb-8 text-white/60 max-w-2xl mx-auto">
-              Let's discuss your project and find the perfect solution for your business
+              Hãy thảo luận về dự án của bạn và tìm giải pháp hoàn hảo cho doanh nghiệp của bạn
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <button 
                 onClick={openCTA}
                 className="btn-primary inline-flex items-center gap-2"
               >
-                Get a Free Quote <FiArrowRight className="w-5 h-5" />
+                Nhận Báo Giá Miễn Phí <FiArrowRight className="w-5 h-5" />
               </button>
               <button 
                 onClick={openCTA}
                 className="btn-secondary inline-flex items-center gap-2"
               >
-                Schedule a Consultation <FiCheck className="w-5 h-5" />
+                Đặt Lịch Tư Vấn <FiCheck className="w-5 h-5" />
               </button>
             </div>
           </GlassCard>

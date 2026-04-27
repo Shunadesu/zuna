@@ -1,28 +1,27 @@
 import { useState, useEffect } from "react"
 import { X } from "lucide-react"
 import { motion, AnimatePresence } from "framer-motion"
-import { GodRays, MeshGradient } from "@paper-design/shaders-react"
 import { useCTA } from "../../context/CTAContext"
 
 const FluidCTA = ({ 
-  title = "Ready to Build Something Amazing?",
-  description = "Empower your team to focus on creation, not configuration. Build, launch, and grow exceptional digital products with confidence and speed.",
-  buttonText = "Let's Talk",
-  expandedTitle = "Let's Talk",
+  title = "Sẵn Sàng Xây Dựng Điều Gì Đó Tuyệt Vời?",
+  description = "Trao quyền cho đội ngũ của bạn tập trung vào sáng tạo, không phải cấu hình. Xây dựng, ra mắt và phát triển các sản phẩm số xuất sắc một cách tự tin và nhanh chóng.",
+  buttonText = "Liên Hệ",
+  expandedTitle = "Liên Hệ",
   features = [
     {
       icon: "check",
-      text: "Learn how Zuna can transform your business with tailored solutions and flexible pricing options."
+      text: "Tìm hiểu cách Zuna có thể chuyển đổi doanh nghiệp của bạn với các giải pháp tùy chỉnh và tùy chọn giá linh hoạt."
     },
     {
       icon: "zap",
-      text: "Experience firsthand how Zuna Platform accelerates delivery & drives results."
+      text: "Trải nghiệm trực tiếp cách Zuna Platform tăng tốc triển khai và thúc đẩy kết quả."
     }
   ],
   testimonial = {
-    quote: "Zuna empowers our team to move faster and ship products with confidence.",
+    quote: "Zuna trao quyền cho đội ngũ của chúng tôi di chuyển nhanh hơn và tung ra sản phẩm một cách tự tin.",
     name: "Sarah Chen",
-    role: "Product Manager",
+    role: "Quản Lý Sản Phẩm",
     avatar: null
   }
 }) => {
@@ -69,31 +68,12 @@ const FluidCTA = ({
   return (
     <>
       <div className="relative flex min-h-[60vh] flex-col items-center justify-center px-4 sm:px-6 py-12 sm:py-20">
-        {/* GodRays Background */}
-        <div className="absolute inset-0">
-          <GodRays
-            colorBack="#00000000"
-            colors={["#06b6d4", "#8b5cf6", "#ec4899", "#a855f7"]}
-            colorBloom="#8b5cf6"
-            offsetX={0.85}
-            offsetY={-1}
-            intensity={0.8}
-            spotty={0.45}
-            midSize={10}
-            midIntensity={0}
-            density={0.12}
-            bloom={0.15}
-            speed={1}
-            scale={1.6}
-            frame={3332042.8159981333}
-            style={{
-              height: "100%",
-              width: "100%",
-              position: "absolute",
-              top: 0,
-              left: 0,
-            }}
-          />
+        {/* Animated Gradient Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-900/40 via-black to-cyan-900/30"></div>
+          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-purple-600/30 rounded-full blur-[120px] animate-pulse" style={{ animationDuration: '4s' }}></div>
+          <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-pink-600/20 rounded-full blur-[150px] animate-pulse" style={{ animationDuration: '6s', animationDelay: '2s' }}></div>
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-cyan-600/20 rounded-full blur-[100px] animate-pulse" style={{ animationDuration: '5s', animationDelay: '1s' }}></div>
         </div>
 
         <div className="relative z-10 flex flex-col items-center gap-4 sm:gap-6 text-center">
@@ -156,16 +136,13 @@ const FluidCTA = ({
                   borderRadius: "24px",
                 }}
               >
-                <MeshGradient
-                  speed={1}
-                  colors={["#06b6d4", "#8b5cf6", "#ec4899", "#a855f7"]}
-                  distortion={0.8}
-                  swirl={0.1}
-                  grainMixer={0}
-                  grainOverlay={0}
-                  className="inset-0 sticky top-0"
-                  style={{ height: "100%", width: "100%" }}
-                />
+                <div className="absolute inset-0 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-600 via-purple-600 to-pink-600 animate-gradient-shift"></div>
+                  <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-cyan-400/40 rounded-full blur-[80px] animate-blob animation-delay-2000"></div>
+                  <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-pink-400/40 rounded-full blur-[80px] animate-blob animation-delay-4000"></div>
+                  <div className="absolute bottom-0 left-1/3 w-[400px] h-[400px] bg-purple-400/40 rounded-full blur-[80px] animate-blob animation-delay-3000"></div>
+                  <div className="absolute inset-0 bg-black/20"></div>
+                </div>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0 }}
@@ -260,7 +237,7 @@ const FluidCTA = ({
                         name="name"
                         required
                         className="w-full px-4 py-2.5 rounded-lg bg-white/10 border-0 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/20 transition-all text-sm h-10 backdrop-blur-sm"
-                        placeholder="John Doe"
+                        placeholder="Nguyen Van A"
                       />
                     </div>
 
@@ -270,7 +247,7 @@ const FluidCTA = ({
                         htmlFor="email"
                         className="block text-[10px] font-mono font-normal text-white mb-2 tracking-[0.5px] uppercase"
                       >
-                        WORK EMAIL *
+                        EMAIL CÔNG VIỆC *
                       </label>
                       <input
                         type="email"
@@ -278,7 +255,7 @@ const FluidCTA = ({
                         name="email"
                         required
                         className="w-full px-4 py-2.5 rounded-lg bg-white/10 border-0 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/20 transition-all text-sm h-10 backdrop-blur-sm"
-                        placeholder="john@company.com"
+                        placeholder="email@congty.com"
                       />
                     </div>
 
@@ -288,14 +265,14 @@ const FluidCTA = ({
                           htmlFor="website"
                           className="block text-[10px] font-mono font-normal text-white mb-2 tracking-[0.5px] uppercase"
                         >
-                          COMPANY WEBSITE
+                          WEBSITE CÔNG TY
                         </label>
                         <input
                           type="url"
                           id="website"
                           name="website"
                           className="w-full px-4 py-2.5 rounded-lg bg-white/10 border-0 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/20 transition-all text-sm h-10 backdrop-blur-sm"
-                          placeholder="https://company.com"
+                          placeholder="https://congty.com"
                         />
                       </div>
                       <div className="sm:w-32 w-full">
@@ -303,7 +280,7 @@ const FluidCTA = ({
                           htmlFor="company-size"
                           className="block text-[10px] font-mono font-normal text-white mb-2 tracking-[0.5px] uppercase"
                         >
-                          COMPANY SIZE
+                          QUY MÔ CÔNG TY
                         </label>
                         <select
                           id="company-size"
@@ -331,14 +308,14 @@ const FluidCTA = ({
                         htmlFor="message"
                         className="block text-[10px] font-mono font-normal text-white mb-2 tracking-[0.5px] uppercase"
                       >
-                        ANYTHING ELSE?
+                        CÒN GÌ KHÔNG?
                       </label>
                       <textarea
                         id="message"
                         name="message"
                         rows={3}
                         className="w-full px-4 py-3 rounded-lg bg-white/10 border-0 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-white/20 transition-all resize-none text-sm backdrop-blur-sm"
-                        placeholder="Tell us about your project..."
+                        placeholder="Chia sẻ về dự án của bạn..."
                       />
                     </div>
 
@@ -347,7 +324,7 @@ const FluidCTA = ({
                       type="submit"
                       className="w-full px-8 py-2.5 rounded-full bg-white text-purple-600 font-medium hover:bg-white/90 transition-colors tracking-[-0.03em] h-10"
                     >
-                      Submit
+                      Gửi
                     </button>
                   </form>
                 </div>

@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, Outlet } from 'react-router-dom'
 import { 
   FiMenu, 
   FiX, 
   FiShoppingBag, 
   FiUser,
   FiLogOut,
-  FiSettings,
   FiBell
 } from 'react-icons/fi'
 import useAuthStore from '../../store/authStore'
@@ -16,7 +15,7 @@ import api from '../../utils/api'
 import AuthModal from '../auth/AuthModal'
 import Logo from './Logo'
 
-const Layout = ({ children }) => {
+const Layout = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [unreadCount, setUnreadCount] = useState(0)
   const [authModalOpen, setAuthModalOpen] = useState(false)
@@ -37,7 +36,7 @@ const Layout = ({ children }) => {
 
   const fetchUnreadCount = async () => {
     try {
-      const response = await api.get('/notifications/unread-count')
+      const response = await api.get('/client/notifications/unread-count')
       setUnreadCount(response.data.data?.count || 0)
     } catch (error) {
       // Ignore errors
@@ -47,11 +46,11 @@ const Layout = ({ children }) => {
   const isActive = (path) => location.pathname === path
 
   const navLinks = [
-    { path: '/products', label: 'Marketplace' },
-    { path: '/stories', label: 'Stories' },
-    { path: '/portfolio', label: 'Portfolio' },
-    { path: '/services', label: 'Services' },
-    { path: '/about', label: 'About' },
+    { path: '/products', label: 'Cửa Hàng' },
+    { path: '/stories', label: 'Tin Tức' },
+    { path: '/portfolio', label: 'Hồ Sơ' },
+    { path: '/services', label: 'Dịch Vụ' },
+    { path: '/about', label: 'Giới Thiệu' },
   ]
 
   const [isScrolled, setIsScrolled] = useState(false)
@@ -126,21 +125,12 @@ const Layout = ({ children }) => {
                   <FiUser className="w-5 h-5" />
                   <span>{user?.username}</span>
                 </Link>
-                {user?.role === 'admin' && (
-                  <Link
-                    to="/admin"
-                    className="hidden md:flex items-center space-x-2 px-4 py-2 text-white/70 hover:text-white transition-colors"
-                  >
-                    <FiSettings className="w-5 h-5" />
-                    <span>Admin</span>
-                  </Link>
-                )}
                 <button
                   onClick={logout}
                   className="hidden md:flex items-center space-x-2 px-4 py-2 text-white/70 hover:text-red-400 transition-colors"
                 >
                   <FiLogOut className="w-5 h-5" />
-                  <span>Logout</span>
+                  <span>Đăng Xuất</span>
                 </button>
               </>
             ) : (
@@ -152,7 +142,7 @@ const Layout = ({ children }) => {
                   }}
                   className="hidden md:block px-4 py-2 text-white/70 hover:text-white transition-colors text-sm font-medium"
                 >
-                  Login
+                  Đăng Nhập
                 </button>
                 <button
                   onClick={() => {
@@ -182,7 +172,7 @@ const Layout = ({ children }) => {
                     e.currentTarget.style.boxShadow = '0 0 20px -5px rgba(139, 92, 246, 0.4)';
                   }}
                 >
-                  Let's Talk
+                  Liên Hệ
                 </button>
               </>
             )}
@@ -226,31 +216,22 @@ const Layout = ({ children }) => {
                     onClick={() => setMobileMenuOpen(false)}
                     className="text-3xl font-light text-white/70 hover:text-blue-400 transition-colors"
                   >
-                    Cart {cartCount > 0 && `(${cartCount})`}
+                    Giỏ Hàng {cartCount > 0 && `(${cartCount})`}
                   </Link>
                   <Link
                     to="/notifications"
                     onClick={() => setMobileMenuOpen(false)}
                     className="text-3xl font-light text-white/70 hover:text-blue-400 transition-colors"
                   >
-                    Notifications {unreadCount > 0 && `(${unreadCount})`}
+                    Thông Báo {unreadCount > 0 && `(${unreadCount})`}
                   </Link>
                   <Link
                     to="/dashboard"
                     onClick={() => setMobileMenuOpen(false)}
                     className="text-3xl font-light text-white/70 hover:text-blue-400 transition-colors"
                   >
-                    Dashboard
+                    Bảng Điều Khiển
                   </Link>
-                  {user?.role === 'admin' && (
-                    <Link
-                      to="/admin"
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="text-3xl font-light text-white/70 hover:text-blue-400 transition-colors"
-                    >
-                      Admin
-                    </Link>
-                  )}
                   <button
                     onClick={() => {
                       logout()
@@ -258,7 +239,7 @@ const Layout = ({ children }) => {
                     }}
                     className="text-3xl font-light text-white/70 hover:text-red-400 transition-colors"
                   >
-                    Logout
+                    Đăng Xuất
                   </button>
                 </>
               ) : (
@@ -271,7 +252,7 @@ const Layout = ({ children }) => {
                     }}
                     className="text-3xl font-light text-white/70 hover:text-blue-400 transition-colors"
                   >
-                    Login
+                    Đăng Nhập
                   </button>
                   <button
                     onClick={() => {
@@ -281,7 +262,7 @@ const Layout = ({ children }) => {
                     }}
                     className="mt-4 bg-white text-black px-8 py-3 rounded-full text-lg font-semibold"
                   >
-                    Let's Talk
+                    Liên Hệ
                   </button>
                 </>
               )}
@@ -292,7 +273,7 @@ const Layout = ({ children }) => {
 
       {/* Main Content */}
       <main className="flex-grow">
-        {children}
+        <Outlet />
       </main>
 
       {/* Footer */}
@@ -304,21 +285,21 @@ const Layout = ({ children }) => {
             <div>
               <Logo size="text-2xl" className="mb-6 block" />
               <p className="text-white/50 leading-relaxed">
-                Crafting digital experiences that merge art, technology, and human connection.
+                Kiến tạo trải nghiệm số kết hợp nghệ thuật, công nghệ và kết nối con người.
               </p>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-6">Sitemap</h4>
+              <h4 className="font-semibold mb-6">Điều Hướng</h4>
               <ul className="space-y-4 text-white/60">
-                <li><Link to="/products" className="hover:text-white transition-colors">Marketplace</Link></li>
-                <li><Link to="/stories" className="hover:text-white transition-colors">Stories</Link></li>
-                <li><Link to="/portfolio" className="hover:text-white transition-colors">Portfolio</Link></li>
+                <li><Link to="/products" className="hover:text-white transition-colors">Cửa Hàng</Link></li>
+                <li><Link to="/stories" className="hover:text-white transition-colors">Tin Tức</Link></li>
+                <li><Link to="/portfolio" className="hover:text-white transition-colors">Hồ Sơ</Link></li>
               </ul>
             </div>
             
             <div>
-              <h4 className="font-semibold mb-6">Socials</h4>
+              <h4 className="font-semibold mb-6">Mạng Xã Hội</h4>
               <ul className="space-y-4 text-white/60">
                 <li><a href="#" className="hover:text-white transition-colors">Instagram</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Twitter</a></li>
@@ -328,8 +309,8 @@ const Layout = ({ children }) => {
             </div>
             
             <div>
-              <h4 className="font-semibold mb-6">Let's Chat</h4>
-              <p className="text-white/60 mb-4">Have a project in mind?</p>
+              <h4 className="font-semibold mb-6">Liên Hệ</h4>
+              <p className="text-white/60 mb-4">Bạn có dự án trong đầu?</p>
               <a 
                 href="mailto:hello@zunaweb.com" 
                 className="text-xl font-medium hover:text-blue-400 transition-colors"
@@ -340,10 +321,10 @@ const Layout = ({ children }) => {
           </div>
           
           <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 text-sm text-white/40">
-            <p>&copy; 2024 Zuna Web. All rights reserved.</p>
+            <p>&copy; 2024 Zuna Web. Mọi quyền được bảo lưu.</p>
             <div className="flex items-center gap-6 mt-4 md:mt-0">
-              <Link to="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-              <Link to="#" className="hover:text-white transition-colors">Terms of Service</Link>
+              <Link to="#" className="hover:text-white transition-colors">Chính Sách Bảo Mật</Link>
+              <Link to="#" className="hover:text-white transition-colors">Điều Khoản Dịch Vụ</Link>
             </div>
           </div>
         </div>

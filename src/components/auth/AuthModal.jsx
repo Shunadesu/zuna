@@ -56,12 +56,12 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
     setError('')
 
     if (registerData.password !== registerData.confirmPassword) {
-      setError('Passwords do not match')
+      setError('Mật khẩu không khớp')
       return
     }
 
     if (registerData.password.length < 6) {
-      setError('Password must be at least 6 characters')
+      setError('Mật khẩu phải có ít nhất 6 ký tự')
       return
     }
 
@@ -110,10 +110,10 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
                 <span className="text-white font-bold text-2xl">Z</span>
               </div>
               <h2 className="text-3xl font-bold text-white mb-2 tracking-tight">
-                {mode === 'login' ? 'Welcome Back' : 'Create Account'}
+                {mode === 'login' ? 'Chào Mừng Trở Lại' : 'Tạo Tài Khoản'}
               </h2>
               <p className="text-white/60">
-                {mode === 'login' ? 'Sign in to your account' : 'Join us and start building'}
+                {mode === 'login' ? 'Đăng nhập vào tài khoản của bạn' : 'Tham gia và bắt đầu xây dựng'}
               </p>
             </div>
 
@@ -129,7 +129,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
               <form onSubmit={handleLogin} className="space-y-6">
                 <div>
                   <label className="block text-sm font-medium text-white/80 mb-2">
-                    Email Address
+                    Địa Chỉ Email
                   </label>
                   <div className="relative">
                     <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40" />
@@ -139,14 +139,14 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
                       value={loginData.email}
                       onChange={(e) => setLoginData({ ...loginData, email: e.target.value })}
                       className="input-field pl-10"
-                      placeholder="you@example.com"
+                      placeholder="email@example.com"
                     />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-white/80 mb-2">
-                    Password
+                    Mật Khẩu
                   </label>
                   <div className="relative">
                     <FiLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40" />
@@ -164,10 +164,10 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
                 <div className="flex items-center justify-between">
                   <label className="flex items-center">
                     <input type="checkbox" className="rounded border-white/20 text-white focus:ring-white/20 bg-white/5" />
-                    <span className="ml-2 text-sm text-white/60">Remember me</span>
+                    <span className="ml-2 text-sm text-white/60">Ghi nhớ đăng nhập</span>
                   </label>
                   <a href="#" className="text-sm text-white/60 hover:text-white transition-colors">
-                    Forgot password?
+                    Quên mật khẩu?
                   </a>
                 </div>
 
@@ -179,12 +179,12 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
                   {loading ? (
                     <>
                       <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-black"></div>
-                      <span>Signing in...</span>
+                      <span>Đang đăng nhập...</span>
                     </>
                   ) : (
                     <>
                       <FiLogIn className="w-5 h-5" />
-                      <span>Sign In</span>
+                      <span>Đăng Nhập</span>
                     </>
                   )}
                 </button>
@@ -196,7 +196,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
               <form onSubmit={handleRegister} className="space-y-6">
                 <div>
                   <label className="block text-sm font-medium text-white/80 mb-2">
-                    Username
+                    Tên Người Dùng
                   </label>
                   <div className="relative">
                     <FiUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40" />
@@ -207,14 +207,14 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
                       value={registerData.username}
                       onChange={(e) => setRegisterData({ ...registerData, username: e.target.value })}
                       className="input-field pl-10"
-                      placeholder="johndoe"
+                      placeholder="nguoidung"
                     />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-white/80 mb-2">
-                    Email Address
+                    Địa Chỉ Email
                   </label>
                   <div className="relative">
                     <FiMail className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40" />
@@ -224,14 +224,14 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
                       value={registerData.email}
                       onChange={(e) => setRegisterData({ ...registerData, email: e.target.value })}
                       className="input-field pl-10"
-                      placeholder="you@example.com"
+                      placeholder="email@example.com"
                     />
                   </div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-white/80 mb-2">
-                    Password
+                    Mật Khẩu
                   </label>
                   <div className="relative">
                     <FiLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40" />
@@ -249,7 +249,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
 
                 <div>
                   <label className="block text-sm font-medium text-white/80 mb-2">
-                    Confirm Password
+                    Xác Nhận Mật Khẩu
                   </label>
                   <div className="relative">
                     <FiLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-white/40" />
@@ -272,12 +272,12 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
                   {loading ? (
                     <>
                       <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-black"></div>
-                      <span>Creating account...</span>
+                      <span>Đang tạo tài khoản...</span>
                     </>
                   ) : (
                     <>
                       <FiUserPlus className="w-5 h-5" />
-                      <span>Create Account</span>
+                      <span>Tạo Tài Khoản</span>
                     </>
                   )}
                 </button>
@@ -289,7 +289,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
               <p className="text-white/60">
                 {mode === 'login' ? (
                   <>
-                    Don't have an account?{' '}
+                    Chưa có tài khoản?{' '}
                     <button
                       onClick={() => {
                         setMode('register')
@@ -297,12 +297,12 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
                       }}
                       className="text-white font-semibold hover:text-blue-400 transition-colors"
                     >
-                      Sign up
+                      Đăng Ký
                     </button>
                   </>
                 ) : (
                   <>
-                    Already have an account?{' '}
+                    Đã có tài khoản?{' '}
                     <button
                       onClick={() => {
                         setMode('login')
@@ -310,7 +310,7 @@ const AuthModal = ({ isOpen, onClose, initialMode = 'login' }) => {
                       }}
                       className="text-white font-semibold hover:text-blue-400 transition-colors"
                     >
-                      Sign in
+                      Đăng Nhập
                     </button>
                   </>
                 )}

@@ -21,7 +21,7 @@ const Dashboard = () => {
   const fetchData = async () => {
     try {
       const [productsRes] = await Promise.all([
-        api.get('/products/my-products?limit=5')
+        api.get('/client/products/my-products?limit=5')
       ])
       setProducts(productsRes.data.data || [])
       // Calculate stats from products
@@ -43,17 +43,17 @@ const Dashboard = () => {
         {/* Header */}
           <div className="mb-8 flex justify-between items-center">
             <div>
-              <h1 className="text-3xl font-bold mb-2">Dashboard</h1>
-              <p className="text-gray-600">Welcome back, {user?.username}!</p>
+              <h1 className="text-3xl font-bold mb-2">Bảng Điều Khiển</h1>
+              <p className="text-gray-600">Chào mừng trở lại, {user?.username}!</p>
             </div>
             <div className="flex space-x-2">
               <Link to="/profile" className="btn-secondary flex items-center space-x-2">
                 <FiUser className="w-5 h-5" />
-                <span>Profile</span>
+                <span>Hồ Sơ</span>
               </Link>
               <Link to="/orders" className="btn-secondary flex items-center space-x-2">
                 <FiShoppingBag className="w-5 h-5" />
-                <span>Orders</span>
+                <span>Đơn Hàng</span>
               </Link>
             </div>
           </div>
@@ -63,7 +63,7 @@ const Dashboard = () => {
           <div className="card p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-600 text-sm mb-1">Total Products</p>
+                <p className="text-gray-600 text-sm mb-1">Tổng Sản Phẩm</p>
                 <p className="text-3xl font-bold gradient-text">{stats.products}</p>
               </div>
               <FiPackage className="w-12 h-12 text-primary-400" />
@@ -73,7 +73,7 @@ const Dashboard = () => {
           <div className="card p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-600 text-sm mb-1">Total Sales</p>
+                <p className="text-gray-600 text-sm mb-1">Tổng Doanh Số</p>
                 <p className="text-3xl font-bold gradient-text">{stats.sales}</p>
               </div>
               <FiDollarSign className="w-12 h-12 text-green-400" />
@@ -83,7 +83,7 @@ const Dashboard = () => {
           <div className="card p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-600 text-sm mb-1">Earnings</p>
+                <p className="text-gray-600 text-sm mb-1">Thu Nhập</p>
                 <p className="text-3xl font-bold gradient-text">${stats.earnings}</p>
               </div>
               <FiDollarSign className="w-12 h-12 text-yellow-400" />
@@ -93,7 +93,7 @@ const Dashboard = () => {
           <div className="card p-6">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-gray-600 text-sm mb-1">Reviews</p>
+                <p className="text-gray-600 text-sm mb-1">Đánh Giá</p>
                 <p className="text-3xl font-bold gradient-text">{stats.reviews}</p>
               </div>
               <FiStar className="w-12 h-12 text-purple-400" />
@@ -104,17 +104,17 @@ const Dashboard = () => {
         {/* My Products */}
         <div className="card p-6">
           <div className="flex justify-between items-center mb-6">
-            <h2 className="text-2xl font-bold">My Products</h2>
+            <h2 className="text-2xl font-bold">Sản Phẩm Của Tôi</h2>
             <Link to="/products/create" className="btn-primary">
-              Create Product
+              Tạo Sản Phẩm
             </Link>
           </div>
 
           {products.length === 0 ? (
             <div className="text-center py-12">
-              <p className="text-gray-600 mb-4">You haven't created any products yet.</p>
+              <p className="text-gray-600 mb-4">Bạn chưa tạo sản phẩm nào.</p>
               <Link to="/products/create" className="btn-primary">
-                Create Your First Product
+                Tạo Sản Phẩm Đầu Tiên
               </Link>
             </div>
           ) : (
@@ -133,7 +133,7 @@ const Dashboard = () => {
                           product.status === 'pending' ? 'text-yellow-600' :
                           'text-red-600'
                         }`}>
-                          {product.status}
+                          {product.status === 'approved' ? 'Đã Duyệt' : product.status === 'pending' ? 'Đang Chờ' : 'Từ Chối'}
                         </span>
                       </p>
                     </div>
@@ -141,14 +141,14 @@ const Dashboard = () => {
                   <div className="flex items-center space-x-4">
                     <span className="font-bold gradient-text">${product.price}</span>
                     <Link to={`/products/${product.slug}`} className="btn-secondary text-sm">
-                      View
+                      Xem
                     </Link>
                   </div>
                 </div>
               ))}
               <div className="text-center pt-4">
                 <Link to="/products/my-products" className="text-primary-600 hover:text-primary-700 font-semibold">
-                  View All Products →
+                  Xem Tất Cả Sản Phẩm →
                 </Link>
               </div>
             </div>

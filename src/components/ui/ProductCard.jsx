@@ -27,7 +27,7 @@ const ProductCard = memo(({ product }) => (
         )}
         {product.featured && (
           <div className="absolute top-4 right-4 glass px-3 py-1 rounded-full text-xs font-semibold text-white">
-            Featured
+            Nổi Bật
           </div>
         )}
       </div>

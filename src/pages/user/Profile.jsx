@@ -57,17 +57,17 @@ const Profile = () => {
         submitData.append('avatar', avatar)
       }
 
-      const response = await api.put('/users/profile/me', submitData, {
+      const response = await api.put('/client/users/profile/me', submitData, {
         headers: { 'Content-Type': 'multipart/form-data' }
       })
 
       updateUser(response.data.data)
       await checkAuth()
       
-      alert('Profile updated successfully!')
+      alert('Cập nhật hồ sơ thành công!')
     } catch (error) {
       console.error('Error updating profile:', error)
-      alert(error.response?.data?.error?.message || 'Failed to update profile')
+      alert(error.response?.data?.error?.message || 'Không thể cập nhật hồ sơ')
     } finally {
       setLoading(false)
     }
@@ -77,7 +77,7 @@ const Profile = () => {
     <ProtectedRoute>
       <div className="min-h-screen bg-gray-50 py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold mb-8">Edit Profile</h1>
+          <h1 className="text-3xl font-bold mb-8">Chỉnh Sửa Hồ Sơ</h1>
 
           <form onSubmit={handleSubmit} className="bg-white rounded-xl shadow-md p-8 space-y-6">
             {/* Avatar */}
@@ -98,7 +98,7 @@ const Profile = () => {
               <div>
                 <label className="btn-secondary cursor-pointer inline-flex items-center">
                   <FiUpload className="w-5 h-5 mr-2" />
-                  Change Avatar
+                  Thay Đổi Ảnh Đại Diện
                   <input
                     type="file"
                     accept="image/*"
@@ -107,7 +107,7 @@ const Profile = () => {
                   />
                 </label>
                 <p className="text-sm text-gray-600 mt-2">
-                  JPG, PNG or GIF. Max size 5MB
+                  JPG, PNG hoặc GIF. Kích thước tối đa 5MB
                 </p>
               </div>
             </div>
@@ -115,7 +115,7 @@ const Profile = () => {
             {/* Username */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Username *
+                Tên Người Dùng *
               </label>
               <div className="relative">
                 <FiUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
@@ -149,18 +149,18 @@ const Profile = () => {
             {/* Bio */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Bio
+                Giới Thiệu
               </label>
               <textarea
                 rows={4}
                 value={formData.bio}
                 onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
                 className="input-field"
-                placeholder="Tell us about yourself..."
+                placeholder="Chia sẻ về bạn..."
                 maxLength={500}
               />
               <p className="text-sm text-gray-500 mt-1">
-                {formData.bio.length}/500 characters
+                {formData.bio.length}/500 ký tự
               </p>
             </div>
 
@@ -174,33 +174,33 @@ const Profile = () => {
                 value={formData.website}
                 onChange={(e) => setFormData({ ...formData, website: e.target.value })}
                 className="input-field"
-                placeholder="https://yourwebsite.com"
+                placeholder="https://website.com"
               />
             </div>
 
             {/* Location */}
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Location
+                Địa Điểm
               </label>
               <input
                 type="text"
                 value={formData.location}
                 onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                 className="input-field"
-                placeholder="City, Country"
+                placeholder="Thành Phố, Quốc Gia"
               />
             </div>
 
             {/* VIP Info (Read-only) */}
             {user?.vipLevel && user.vipLevel !== 'none' && (
               <div className="p-4 bg-gradient-tech text-white rounded-lg">
-                <p className="font-semibold mb-1">VIP Status</p>
+                <p className="font-semibold mb-1">Trạng Thái VIP</p>
                 <p className="text-sm opacity-90">
-                  {user.vipLevel.charAt(0).toUpperCase() + user.vipLevel.slice(1)} VIP
+                  VIP {user.vipLevel.charAt(0).toUpperCase() + user.vipLevel.slice(1)}
                   {user.vipExpiresAt && (
                     <span className="ml-2">
-                      (Expires: {new Date(user.vipExpiresAt).toLocaleDateString()})
+                      (Hết hạn: {new Date(user.vipExpiresAt).toLocaleDateString()})
                     </span>
                   )}
                 </p>
@@ -217,12 +217,12 @@ const Profile = () => {
                 {loading ? (
                   <>
                     <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white"></div>
-                    <span>Saving...</span>
+                    <span>Đang lưu...</span>
                   </>
                 ) : (
                   <>
                     <FiSave className="w-5 h-5" />
-                    <span>Save Changes</span>
+                    <span>Lưu Thay Đổi</span>
                   </>
                 )}
               </button>

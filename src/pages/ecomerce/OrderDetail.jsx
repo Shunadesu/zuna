@@ -18,7 +18,7 @@ const OrderDetail = () => {
 
   const fetchOrder = async () => {
     try {
-      const orderRes = await api.get(`/orders/${id}`)
+      const orderRes = await api.get(`/client/orders/${id}`)
       const orderData = orderRes.data.data
       setOrder(orderData)
       
@@ -28,7 +28,7 @@ const OrderDetail = () => {
       } else {
         // Try to fetch payment separately
         try {
-          const paymentRes = await api.get(`/payments`, {
+          const paymentRes = await api.get(`/client/payments`, {
             params: { orderId: id }
           })
           if (paymentRes.data.data && paymentRes.data.data.length > 0) {
@@ -50,7 +50,7 @@ const OrderDetail = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-          <p className="mt-4 text-gray-600">Loading order...</p>
+          <p className="mt-4 text-gray-600">Đang tải đơn hàng...</p>
         </div>
       </div>
     )
@@ -60,9 +60,9 @@ const OrderDetail = () => {
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
-          <h2 className="text-2xl font-bold mb-4">Order not found</h2>
+          <h2 className="text-2xl font-bold mb-4">Không tìm thấy đơn hàng</h2>
           <Link to="/orders" className="btn-primary">
-            Back to Orders
+            Quay lại Đơn Hàng
           </Link>
         </div>
       </div>
@@ -78,15 +78,15 @@ const OrderDetail = () => {
             className="inline-flex items-center space-x-2 text-primary-600 hover:text-primary-700 mb-6"
           >
             <FiArrowLeft className="w-5 h-5" />
-            <span>Back to Orders</span>
+            <span>Quay lại Đơn Hàng</span>
           </Link>
 
           <div className="bg-white rounded-xl shadow-md p-8 mb-6">
             <div className="flex justify-between items-start mb-6">
               <div>
-                <h1 className="text-3xl font-bold mb-2">Order #{order.orderNumber}</h1>
+                <h1 className="text-3xl font-bold mb-2">Đơn Hàng #{order.orderNumber}</h1>
                 <p className="text-gray-600">
-                  Placed on {new Date(order.createdAt).toLocaleString()}
+                  Đặt vào ngày {new Date(order.createdAt).toLocaleString()}
                 </p>
               </div>
               <span className={`px-4 py-2 rounded-full font-semibold ${
@@ -102,7 +102,7 @@ const OrderDetail = () => {
 
             {/* Order Items */}
             <div className="border-t pt-6 mb-6">
-              <h2 className="text-xl font-bold mb-4">Order Items</h2>
+              <h2 className="text-xl font-bold mb-4">Sản Phẩm Đã Đặt</h2>
               <div className="space-y-4">
                 {order.items?.map((item, index) => (
                   <div key={index} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
@@ -120,7 +120,7 @@ const OrderDetail = () => {
                         </h3>
                       </Link>
                       <p className="text-sm text-gray-600">
-                        Seller: {item.seller?.username || 'Unknown'}
+                        Người bán: {item.seller?.username || 'Không xác định'}
                       </p>
                       {order.status === 'completed' && item.product?.downloadUrl && (
                         <a
@@ -130,7 +130,7 @@ const OrderDetail = () => {
                           className="inline-flex items-center space-x-2 text-primary-600 hover:text-primary-700 mt-2"
                         >
                           <FiDownload className="w-4 h-4" />
-                          <span className="text-sm">Download</span>
+                          <span className="text-sm">Tải Về</span>
                         </a>
                       )}
                     </div>
@@ -144,18 +144,18 @@ const OrderDetail = () => {
 
             {/* Order Summary */}
             <div className="border-t pt-6">
-              <h2 className="text-xl font-bold mb-4">Order Summary</h2>
+              <h2 className="text-xl font-bold mb-4">Tóm Tắt Đơn Hàng</h2>
               <div className="space-y-2">
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Subtotal</span>
+                  <span className="text-gray-600">Tổng Phụ</span>
                   <span className="font-semibold">${order.subtotal?.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-gray-600">Tax (10%)</span>
+                  <span className="text-gray-600">Thuế (10%)</span>
                   <span className="font-semibold">${order.tax?.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between pt-2 border-t">
-                  <span className="text-lg font-bold">Total</span>
+                  <span className="text-lg font-bold">Tổng Cộng</span>
                   <span className="text-lg font-bold gradient-text">
                     ${order.totalAmount?.toFixed(2)}
                   </span>
@@ -167,7 +167,7 @@ const OrderDetail = () => {
           {/* Shipping Address */}
           {order.shippingAddress && (
             <div className="bg-white rounded-xl shadow-md p-8 mb-6">
-              <h2 className="text-xl font-bold mb-4">Shipping Address</h2>
+              <h2 className="text-xl font-bold mb-4">Địa Chỉ Giao Hàng</h2>
               <div className="text-gray-700">
                 <p className="font-semibold">{order.shippingAddress.fullName}</p>
                 <p>{order.shippingAddress.address}</p>
@@ -183,15 +183,15 @@ const OrderDetail = () => {
           {/* Payment Info */}
           {payment && (
             <div className="bg-white rounded-xl shadow-md p-8">
-              <h2 className="text-xl font-bold mb-4">Payment Information</h2>
+              <h2 className="text-xl font-bold mb-4">Thông Tin Thanh Toán</h2>
               <div className="space-y-2 text-gray-700">
-                <p><span className="font-semibold">Method:</span> {payment.method}</p>
-                <p><span className="font-semibold">Status:</span> {payment.status}</p>
+                <p><span className="font-semibold">Phương thức:</span> {payment.method}</p>
+                <p><span className="font-semibold">Trạng thái:</span> {payment.status}</p>
                 {payment.transactionId && (
-                  <p><span className="font-semibold">Transaction ID:</span> {payment.transactionId}</p>
+                  <p><span className="font-semibold">Mã Giao Dịch:</span> {payment.transactionId}</p>
                 )}
                 {payment.paidAt && (
-                  <p><span className="font-semibold">Paid At:</span> {new Date(payment.paidAt).toLocaleString()}</p>
+                  <p><span className="font-semibold">Thanh Toán Lúc:</span> {new Date(payment.paidAt).toLocaleString()}</p>
                 )}
               </div>
             </div>

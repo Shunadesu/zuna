@@ -25,8 +25,8 @@ const ReviewForm = () => {
     try {
       // Try to get product by slug first, then by ID
       const productParam = slug || productId
-      const response = await api.get(`/products/${productParam}`)
-      setProduct(response.data.data)
+      const response = await api.get(`/public/products/${productParam}`)
+      setProduct(response.data.data?.product || response.data.data)
     } catch (error) {
       console.error('Error fetching product:', error)
     }
@@ -38,7 +38,7 @@ const ReviewForm = () => {
 
     try {
       const productIdToUse = product?._id || productId
-      await api.post(`/reviews/products/${productIdToUse}`, formData)
+      await api.post(`/client/reviews/products/${productIdToUse}`, formData)
       navigate(`/products/${product?.slug || slug}`)
     } catch (error) {
       console.error('Error submitting review:', error)

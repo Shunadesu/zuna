@@ -18,9 +18,21 @@ const Portfolio = () => {
   const fetchPortfolio = async () => {
     try {
       const data = await fetchPortfolioCached()
-      setPortfolio(data)
+      // API returns { data: { portfolios: [...] } }, extract portfolios array
+      if (Array.isArray(data)) {
+        setPortfolio(data)
+      } else if (data?.portfolios) {
+        setPortfolio(data.portfolios)
+      } else if (data?.data?.portfolios) {
+        setPortfolio(data.data.portfolios)
+      } else if (Array.isArray(data?.data)) {
+        setPortfolio(data.data)
+      } else {
+        setPortfolio([])
+      }
     } catch (error) {
       console.error('Error fetching portfolio:', error)
+      setPortfolio([])
     } finally {
       setLoading(false)
     }
@@ -29,9 +41,9 @@ const Portfolio = () => {
   return (
     <>
       <SEO
-        title="Portfolio - Our Work"
-        description="Explore our portfolio of successful projects. See how we've helped businesses transform their digital presence with modern web solutions."
-        keywords="portfolio, web design portfolio, web development projects, case studies, our work"
+        title="Hồ Sơ - Công Việc Của Chúng Tôi"
+        description="Khám phá hồ sơ các dự án thành công. Xem cách chúng tôi đã giúp các doanh nghiệp chuyển đổi sự hiện diện số của họ với các giải pháp web hiện đại."
+        keywords="hồ sơ, hồ sơ thiết kế web, dự án phát triển web, nghiên cứu điển hình, công việc của chúng tôi"
         url="https://zunaweb.com/portfolio"
       />
       <div className="min-h-screen bg-black text-white relative py-32">
@@ -40,21 +52,21 @@ const Portfolio = () => {
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
         <div className="text-center mb-20">
-          <h1 className="section-title">Our Portfolio</h1>
+          <h1 className="section-title">Hồ Sơ Của Chúng Tôi</h1>
           <div className="h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full w-24 mx-auto mb-6" />
           <p className="section-subtitle">
-            Showcasing our best work and projects
+            Giới thiệu những công việc và dự án tốt nhất của chúng tôi
           </p>
         </div>
 
         {loading ? (
           <div className="text-center py-12">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
-            <p className="mt-4 text-white/60">Loading portfolio...</p>
+            <p className="mt-4 text-white/60">Đang tải hồ sơ...</p>
           </div>
         ) : portfolio.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-white/60 text-lg">No portfolio items found</p>
+            <p className="text-white/60 text-lg">Không tìm thấy mục hồ sơ nào</p>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -105,7 +117,7 @@ const Portfolio = () => {
                       className="flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors"
                     >
                       <FiExternalLink className="w-4 h-4" />
-                      <span className="text-sm">Live Demo</span>
+                      <span className="text-sm">Xem Trực Tiếp</span>
                     </a>
                   )}
                   {item.githubUrl && (

@@ -12,8 +12,8 @@ const FeaturedProductsSection = ({ products }) => {
       
       <div className="container mx-auto px-6 relative z-10">
         <SectionHeader
-          title="Featured Products"
-          subtitle="Handpicked premium templates and themes from our marketplace"
+          title="Sản Phẩm Nổi Bật"
+          subtitle="Các mẫu và giao diện cao cấp được tuyển chọn từ cửa hàng của chúng tôi"
         />
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
@@ -30,7 +30,7 @@ const FeaturedProductsSection = ({ products }) => {
               border: '1px solid rgba(139, 92, 246, 0.3)'
             }}
           >
-            View All Products <FiArrowRight className="w-5 h-5" />
+            Xem Tất Cả Sản Phẩm <FiArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </div>

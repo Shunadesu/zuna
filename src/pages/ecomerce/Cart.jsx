@@ -33,9 +33,9 @@ const Cart = () => {
                   <FiShoppingBag className="w-32 h-32 text-white/20 mx-auto relative" />
                 </div>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Your cart is empty</h2>
+              <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">Giỏ hàng của bạn trống</h2>
               <p className="text-white/60 text-lg mb-8 max-w-md mx-auto">
-                Add some products to get started!
+                Thêm vài sản phẩm để bắt đầu!
               </p>
               <Link 
                 to="/products" 
@@ -53,7 +53,7 @@ const Cart = () => {
                   e.currentTarget.style.boxShadow = '0 0 40px -10px rgba(139, 92, 246, 0.5)';
                 }}
               >
-                <span>Browse Products</span>
+                <span>Duyệt Sản Phẩm</span>
                 <FiArrowRight className="w-5 h-5" />
               </Link>
             </GlassCard>
@@ -70,9 +70,9 @@ const Cart = () => {
       <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
         <div className="mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Shopping Cart</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Giỏ Hàng</h1>
           <p className="text-white/60 text-lg">
-            {items.length} {items.length === 1 ? 'item' : 'items'} in your cart
+            {items.length} {items.length === 1 ? 'sản phẩm' : 'sản phẩm'} trong giỏ hàng
           </p>
         </div>
 
@@ -104,7 +104,7 @@ const Cart = () => {
                       </h3>
                     </Link>
                     <p className="text-white/50 text-sm">
-                      Seller: <span className="text-white/70">{item.seller?.username || 'Unknown'}</span>
+                      Người bán: <span className="text-white/70">{item.seller?.username || 'Không xác định'}</span>
                     </p>
                   </div>
                   
@@ -129,12 +129,12 @@ const Cart = () => {
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-6">
               {showClearConfirm ? (
                 <div className="flex items-center gap-3 glass px-4 py-2 rounded-full">
-                  <span className="text-sm text-white/80">Clear all items?</span>
+                  <span className="text-sm text-white/80">Xóa tất cả sản phẩm?</span>
                   <button
                     onClick={handleClearCart}
                     className="px-4 py-1.5 bg-red-500/20 hover:bg-red-500/30 text-red-400 rounded-full text-sm font-medium transition-all"
                   >
-                    Confirm
+                    Xác Nhận
                   </button>
                   <button
                     onClick={() => setShowClearConfirm(false)}
@@ -149,14 +149,14 @@ const Cart = () => {
                   className="px-6 py-2.5 glass rounded-full text-white/70 hover:text-red-400 hover:bg-red-500/10 font-medium transition-all duration-300"
                   style={{ border: '1px solid rgba(239, 68, 68, 0.3)' }}
                 >
-                  Clear Cart
+                  Xóa Giỏ
                 </button>
               )}
               <Link 
                 to="/products" 
                 className="inline-flex items-center gap-2 text-white/70 hover:text-transparent hover:bg-clip-text hover:bg-gradient-to-r hover:from-cyan-400 hover:via-purple-400 hover:to-pink-400 transition-all duration-300 font-medium"
               >
-                Continue Shopping <FiArrowRight className="w-4 h-4" />
+                Tiếp Tục Mua Sắm <FiArrowRight className="w-4 h-4" />
               </Link>
             </div>
           </div>
@@ -164,19 +164,19 @@ const Cart = () => {
           {/* Order Summary */}
           <div className="lg:col-span-1">
             <GlassCard className="p-6 sticky top-4">
-              <h2 className="text-2xl font-bold mb-6">Order Summary</h2>
+              <h2 className="text-2xl font-bold mb-6">Tóm Tắt Đơn Hàng</h2>
               
               <div className="space-y-4 mb-6">
                 <div className="flex justify-between text-white/80">
-                  <span>Subtotal</span>
+                  <span>Tổng Phụ</span>
                   <span className="font-semibold text-white">${total.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-white/80">
-                  <span>Tax (10%)</span>
+                  <span>Thuế (10%)</span>
                   <span className="font-semibold text-white">${tax.toFixed(2)}</span>
                 </div>
                 <div className="border-t border-white/10 pt-4 flex justify-between">
-                  <span className="text-xl font-bold text-white">Total</span>
+                  <span className="text-xl font-bold text-white">Tổng Cộng</span>
                   <span className="text-xl font-bold text-gradient">${finalTotal.toFixed(2)}</span>
                 </div>
               </div>
@@ -198,12 +198,12 @@ const Cart = () => {
                     e.currentTarget.style.boxShadow = '0 0 40px -10px rgba(139, 92, 246, 0.5)';
                   }}
                 >
-                  Proceed to Checkout
+                  Tiến Hành Thanh Toán
                 </Link>
               ) : (
                 <div>
                   <p className="text-sm text-white/60 mb-4 text-center">
-                    Please login to checkout
+                    Vui lòng đăng nhập để thanh toán
                   </p>
                   <Link
                     to="/login"
@@ -221,7 +221,7 @@ const Cart = () => {
                       e.currentTarget.style.boxShadow = '0 0 40px -10px rgba(139, 92, 246, 0.5)';
                     }}
                   >
-                    Login to Checkout
+                    Đăng Nhập Để Thanh Toán
                   </Link>
                 </div>
               )}

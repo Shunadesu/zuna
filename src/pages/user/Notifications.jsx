@@ -22,7 +22,7 @@ const Notifications = () => {
   const fetchNotifications = async () => {
     try {
       const params = filter !== 'all' ? { read: false } : {}
-      const response = await api.get('/notifications', { params })
+      const response = await api.get('/client/notifications', { params })
       setNotifications(response.data.data?.notifications || [])
     } catch (error) {
       console.error('Error fetching notifications:', error)
@@ -33,7 +33,7 @@ const Notifications = () => {
 
   const fetchUnreadCount = async () => {
     try {
-      const response = await api.get('/notifications/unread-count')
+      const response = await api.get('/client/notifications/unread-count')
       setUnreadCount(response.data.data?.count || 0)
     } catch (error) {
       console.error('Error fetching unread count:', error)
@@ -42,7 +42,7 @@ const Notifications = () => {
 
   const markAsRead = async (id) => {
     try {
-      await api.put(`/notifications/${id}/read`)
+      await api.put(`/client/notifications/${id}/read`)
       fetchNotifications()
       fetchUnreadCount()
     } catch (error) {
@@ -52,7 +52,7 @@ const Notifications = () => {
 
   const markAllAsRead = async () => {
     try {
-      await api.put('/notifications/read-all')
+      await api.put('/client/notifications/read-all')
       fetchNotifications()
       fetchUnreadCount()
     } catch (error) {
@@ -62,7 +62,7 @@ const Notifications = () => {
 
   const deleteNotification = async (id) => {
     try {
-      await api.delete(`/notifications/${id}`)
+      await api.delete(`/client/notifications/${id}`)
       fetchNotifications()
       fetchUnreadCount()
     } catch (error) {
@@ -95,7 +95,7 @@ const Notifications = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-          <p className="mt-4 text-gray-600">Loading notifications...</p>
+          <p className="mt-4 text-gray-600">Đang tải thông báo...</p>
         </div>
       </div>
     )
@@ -108,7 +108,7 @@ const Notifications = () => {
           <div className="flex justify-between items-center mb-8">
             <div className="flex items-center space-x-3">
               <FiBell className="w-8 h-8 text-primary-600" />
-              <h1 className="text-3xl font-bold">Notifications</h1>
+              <h1 className="text-3xl font-bold">Thông Báo</h1>
               {unreadCount > 0 && (
                 <span className="px-3 py-1 bg-red-500 text-white rounded-full text-sm font-semibold">
                   {unreadCount}
@@ -121,7 +121,7 @@ const Notifications = () => {
                 onClick={markAllAsRead}
                 className="btn-secondary text-sm"
               >
-                Mark All as Read
+                Đánh Dấu Tất Cả Đã Đọc
               </button>
             )}
           </div>
@@ -138,7 +138,7 @@ const Notifications = () => {
                     : 'bg-white text-gray-700 hover:bg-gray-50'
                 }`}
               >
-                {f === 'all' ? 'All' : 'Unread'}
+                {f === 'all' ? 'Tất Cả' : 'Chưa Đọc'}
               </button>
             ))}
           </div>
@@ -146,8 +146,8 @@ const Notifications = () => {
           {notifications.length === 0 ? (
             <div className="bg-white rounded-xl shadow-md p-12 text-center">
               <FiBell className="w-24 h-24 text-gray-300 mx-auto mb-4" />
-              <h2 className="text-2xl font-bold mb-2">No notifications</h2>
-              <p className="text-gray-600">You're all caught up!</p>
+              <h2 className="text-2xl font-bold mb-2">Không có thông báo nào</h2>
+              <p className="text-gray-600">Bạn đã cập nhật hết rồi!</p>
             </div>
           ) : (
             <div className="space-y-4">
@@ -183,7 +183,7 @@ const Notifications = () => {
                           to={notification.link}
                           className="inline-block mt-4 text-primary-600 hover:text-primary-700 font-semibold text-sm"
                         >
-                          View Details →
+                          Xem Chi Tiết →
                         </Link>
                       )}
                     </div>
@@ -193,7 +193,7 @@ const Notifications = () => {
                         <button
                           onClick={() => markAsRead(notification._id)}
                           className="p-2 text-gray-600 hover:text-primary-600 transition-colors"
-                          title="Mark as read"
+                          title="Đánh dấu đã đọc"
                         >
                           <FiCheck className="w-5 h-5" />
                         </button>
@@ -201,7 +201,7 @@ const Notifications = () => {
                       <button
                         onClick={() => deleteNotification(notification._id)}
                         className="p-2 text-gray-600 hover:text-red-600 transition-colors"
-                        title="Delete"
+                        title="Xóa"
                       >
                         <FiTrash2 className="w-5 h-5" />
                       </button>

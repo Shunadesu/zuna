@@ -12,8 +12,8 @@ const RecentStoriesSection = ({ stories }) => {
       
       <div className="container mx-auto px-6 relative z-10">
         <SectionHeader
-          title="Latest Stories"
-          subtitle="Insights, updates, and stories from our team"
+          title="Bài Viết Mới Nhất"
+          subtitle="Thông tin chi tiết, cập nhật và câu chuyện từ đội ngũ của chúng tôi"
         />
         
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
@@ -30,7 +30,7 @@ const RecentStoriesSection = ({ stories }) => {
               border: '1px solid rgba(139, 92, 246, 0.3)'
             }}
           >
-            Read All Stories <FiArrowRight className="w-5 h-5" />
+            Đọc Tất Cả Bài Viết <FiArrowRight className="w-5 h-5" />
           </Link>
         </div>
       </div>

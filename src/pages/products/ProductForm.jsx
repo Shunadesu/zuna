@@ -55,7 +55,7 @@ const ProductForm = () => {
     if (!id) return
     try {
       // First try to get from my-products to ensure user owns it
-      const myProductsRes = await api.get('/products/my-products')
+      const myProductsRes = await api.get('/client/products/my-products')
       const myProduct = myProductsRes.data.data?.find(p => p._id === id)
       
       if (myProduct) {
@@ -79,8 +79,8 @@ const ProductForm = () => {
         setImagePreviews(product.images || [])
       } else {
         // Fallback: try direct API call
-        const response = await api.get(`/products/${id}`)
-        const product = response.data.data
+        const response = await api.get(`/public/products/${id}`)
+        const product = response.data.data?.product || response.data.data
         setFormData({
           title: product.title || '',
           description: product.description || '',
@@ -196,11 +196,11 @@ const ProductForm = () => {
       })
 
       if (isEdit) {
-        await api.put(`/products/${id}`, submitData, {
+        await api.put(`/client/products/${product.slug}`, submitData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         })
       } else {
-        await api.post('/products', submitData, {
+        await api.post('/client/products', submitData, {
           headers: { 'Content-Type': 'multipart/form-data' }
         })
       }

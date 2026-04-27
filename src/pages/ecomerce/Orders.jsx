@@ -20,7 +20,7 @@ const Orders = () => {
   const fetchOrders = async () => {
     try {
       const params = filter !== 'all' ? { status: filter } : {}
-      const response = await api.get('/orders', { params })
+      const response = await api.get('/client/orders', { params })
       setOrders(response.data.data || [])
     } catch (error) {
       console.error('Error fetching orders:', error)
@@ -65,7 +65,7 @@ const Orders = () => {
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary-600"></div>
-          <p className="mt-4 text-gray-600">Loading orders...</p>
+          <p className="mt-4 text-gray-600">Đang tải đơn hàng...</p>
         </div>
       </div>
     )
@@ -76,7 +76,7 @@ const Orders = () => {
       <div className="min-h-screen bg-gray-50 py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-8">
-            <h1 className="text-3xl font-bold">My Orders</h1>
+            <h1 className="text-3xl font-bold">Đơn Hàng Của Tôi</h1>
             
             {/* Filter */}
             <div className="flex space-x-2">
@@ -90,7 +90,7 @@ const Orders = () => {
                       : 'bg-white text-gray-700 hover:bg-gray-50'
                   }`}
                 >
-                  {status.charAt(0).toUpperCase() + status.slice(1)}
+                  {status === 'all' ? 'Tất Cả' : status === 'pending' ? 'Đang Chờ' : status === 'paid' ? 'Đã Thanh Toán' : status === 'processing' ? 'Đang Xử Lý' : status === 'completed' ? 'Hoàn Thành' : 'Đã Hủy'}
                 </button>
               ))}
             </div>
@@ -99,10 +99,10 @@ const Orders = () => {
           {orders.length === 0 ? (
             <div className="bg-white rounded-xl shadow-md p-12 text-center">
               <FiPackage className="w-24 h-24 text-gray-300 mx-auto mb-4" />
-              <h2 className="text-2xl font-bold mb-2">No orders found</h2>
-              <p className="text-gray-600 mb-6">You haven't placed any orders yet.</p>
+              <h2 className="text-2xl font-bold mb-2">Không tìm thấy đơn hàng nào</h2>
+              <p className="text-gray-600 mb-6">Bạn chưa đặt đơn hàng nào.</p>
               <Link to="/products" className="btn-primary">
-                Browse Products
+                Duyệt Sản Phẩm
               </Link>
             </div>
           ) : (
@@ -112,10 +112,10 @@ const Orders = () => {
                   <div className="flex justify-between items-start mb-4">
                     <div>
                       <h3 className="text-lg font-semibold mb-1">
-                        Order #{order.orderNumber}
+                        Đơn Hàng #{order.orderNumber}
                       </h3>
                       <p className="text-sm text-gray-600">
-                        Placed on {new Date(order.createdAt).toLocaleDateString()}
+                        Đặt vào ngày {new Date(order.createdAt).toLocaleDateString()}
                       </p>
                     </div>
                     <div className="flex items-center space-x-4">
@@ -128,7 +128,7 @@ const Orders = () => {
                         className="btn-secondary text-sm flex items-center space-x-2"
                       >
                         <FiEye className="w-4 h-4" />
-                        <span>View</span>
+                        <span>Xem</span>
                       </Link>
                     </div>
                   </div>
@@ -153,14 +153,14 @@ const Orders = () => {
                     </div>
                     {order.items?.length > 3 && (
                       <p className="text-sm text-gray-600">
-                        +{order.items.length - 3} more item(s)
+                        +{order.items.length - 3} sản phẩm khác
                       </p>
                     )}
                   </div>
 
                   <div className="border-t pt-4 flex justify-between items-center">
                     <div>
-                      <p className="text-sm text-gray-600">Total Amount</p>
+                      <p className="text-sm text-gray-600">Tổng Số Tiền</p>
                       <p className="text-xl font-bold gradient-text">
                         ${order.totalAmount?.toFixed(2)}
                       </p>
@@ -168,18 +168,18 @@ const Orders = () => {
                     {order.status === 'pending' && (
                       <button
                         onClick={async () => {
-                          if (confirm('Are you sure you want to cancel this order?')) {
+                          if (confirm('Bạn có chắc muốn hủy đơn hàng này không?')) {
                             try {
-                              await api.put(`/orders/${order._id}/cancel`)
+                              await api.put(`/client/orders/${order._id}/cancel`)
                               fetchOrders()
                             } catch (error) {
-                              alert('Failed to cancel order')
+                              alert('Không thể hủy đơn hàng')
                             }
                           }
                         }}
                         className="btn-secondary text-red-600 border-red-600 hover:bg-red-50"
                       >
-                        Cancel Order
+                        Hủy Đơn Hàng
                       </button>
                     )}
                   </div>

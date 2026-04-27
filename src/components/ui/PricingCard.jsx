@@ -22,7 +22,7 @@ const PricingCard = ({
         <div className="absolute -top-4 left-1/2 -translate-x-1/2">
           <div className="px-4 py-1 rounded-full glass text-xs font-semibold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 flex items-center gap-1">
             <FiStar className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-            Most Popular
+            Phổ Biến Nhất
           </div>
         </div>
       )}
@@ -71,7 +71,7 @@ const PricingCard = ({
         className="w-full"
         icon={false}
       >
-        Get Started
+        Bắt Đầu Ngay
       </GradientButton>
     </GlassCard>
   )

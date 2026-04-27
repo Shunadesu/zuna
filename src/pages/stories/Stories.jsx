@@ -41,32 +41,32 @@ const Stories = () => {
   return (
     <>
       <SEO
-        title="Stories & Blog - Latest Updates"
-        description="Read our latest stories, insights, and updates about web development, design trends, and digital solutions. Stay informed with Zuna Web blog."
-        keywords="blog, stories, web development blog, design blog, tech articles, web development insights"
+        title="Tin Tức & Blog - Cập Nhật Mới Nhất"
+        description="Đọc những tin tức, thông tin chi tiết và cập nhật mới nhất về phát triển web, xu hướng thiết kế và giải pháp số. Cập nhật tin tức với blog Zuna Web."
+        keywords="blog, tin tức, blog phát triển web, blog thiết kế, bài viết công nghệ, thông tin phát triển web"
         url="https://zunaweb.com/stories"
       />
       <div className="min-h-screen bg-black text-white relative py-32">
         <AnimatedBackground variant="gradient" />
-      
-      <div className="container mx-auto px-6 relative z-10">
+        
+        <div className="container mx-auto px-6 relative z-10">
         {/* Header */}
         <div className="text-center mb-20">
-          <h1 className="section-title">Stories & Blog</h1>
+          <h1 className="section-title">Tin Tức & Blog</h1>
           <div className="h-1 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full w-24 mx-auto mb-6" />
           <p className="section-subtitle">
-            Insights, updates, and stories from our team
+            Thông tin chi tiết, cập nhật và câu chuyện từ đội ngũ của chúng tôi
           </p>
         </div>
 
         {loading ? (
           <div className="text-center py-12">
             <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
-            <p className="mt-4 text-white/60">Loading stories...</p>
+            <p className="mt-4 text-white/60">Đang tải tin tức...</p>
           </div>
         ) : stories.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-white/60 text-lg">No stories found</p>
+            <p className="text-white/60 text-lg">Không tìm thấy bài viết nào</p>
           </div>
         ) : (
           <>
@@ -94,7 +94,7 @@ const Stories = () => {
                       </div>
                       <div className="flex items-center">
                         <FiClock className="w-4 h-4 mr-1" />
-                        {story.readTime} min read
+                        {story.readTime} phút đọc
                       </div>
                     </div>
                     <h3 className="text-2xl font-bold mb-4 group-hover:translate-x-2 transition-transform duration-500">
@@ -104,7 +104,7 @@ const Stories = () => {
                       {story.excerpt || story.content}
                     </p>
                     <div className="flex items-center gap-2 text-sm font-medium text-white/40 group-hover:text-white transition-colors">
-                      Read more <div className="w-4 h-[1px] bg-current transition-all group-hover:w-8" />
+                      Đọc Thêm <div className="w-4 h-[1px] bg-current transition-all group-hover:w-8" />
                     </div>
                   </GlassCard>
                 </Link>
@@ -119,7 +119,7 @@ const Stories = () => {
                   disabled={pagination.page === 1}
                   className="px-4 py-2 glass rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/10 text-white"
                 >
-                  Previous
+                  Trước
                 </button>
                 {[...Array(pagination.pages)].map((_, i) => (
                   <button
@@ -139,14 +139,14 @@ const Stories = () => {
                   disabled={pagination.page === pagination.pages}
                   className="px-4 py-2 glass rounded-lg disabled:opacity-50 disabled:cursor-not-allowed hover:bg-white/10 text-white"
                 >
-                  Next
+                  Tiếp
                 </button>
               </div>
             )}
           </>
         )}
+        </div>
       </div>
-    </div>
     </>
   )
 }

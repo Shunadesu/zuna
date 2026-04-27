@@ -61,7 +61,7 @@ const useDataStore = create(
         }
         
         try {
-          const response = await api.get('/products?limit=6&featured=true')
+          const response = await api.get('/public/products?limit=6&featured=true')
           const data = response.data.data || []
           set({
             featuredProducts: data,
@@ -84,7 +84,7 @@ const useDataStore = create(
         }
         
         try {
-          const response = await api.get('/stories?limit=3')
+          const response = await api.get('/public/stories?limit=3')
           const data = response.data.data || []
           set({
             recentStories: data,
@@ -106,7 +106,7 @@ const useDataStore = create(
         }
         
         try {
-          const response = await api.get('/portfolio')
+          const response = await api.get('/public/portfolio')
           const data = response.data.data || []
           set({
             portfolio: data,
@@ -128,7 +128,7 @@ const useDataStore = create(
         }
         
         try {
-          const response = await api.get('/analytics/stats').catch(() => null)
+          const response = await api.get('/public/stats').catch(() => null)
           const data = response?.data?.data || null
           set({
             stats: data,
@@ -159,9 +159,9 @@ const useDataStore = create(
             ...Object.fromEntries(Object.entries(filters).filter(([_, v]) => v))
           })
           
-          const response = await api.get(`/products?${params}`)
+          const response = await api.get(`/public/products?${params}`)
           const data = {
-            products: response.data.data || [],
+            products: Array.isArray(response.data.data) ? response.data.data : [],
             pagination: response.data.pagination || {}
           }
           
@@ -189,9 +189,9 @@ const useDataStore = create(
         }
         
         try {
-          const response = await api.get(`/stories?page=${pagination.page}&limit=${pagination.limit}`)
+          const response = await api.get(`/public/stories?page=${pagination.page}&limit=${pagination.limit}`)
           const data = {
-            stories: response.data.data || [],
+            stories: Array.isArray(response.data.data) ? response.data.data : [],
             pagination: response.data.pagination || {}
           }
           
@@ -216,8 +216,10 @@ const useDataStore = create(
         }
         
         try {
-          const response = await api.get('/services')
-          const data = response.data.data || []
+          const response = await api.get('/public/services')
+          // Backend returns { data: { services: [...] } }
+          const rawData = response.data.data
+          const data = Array.isArray(rawData) ? rawData : (rawData?.services || [])
           set({
             services: data,
             servicesTimestamp: Date.now()
@@ -244,9 +246,9 @@ const useDataStore = create(
         
         try {
           const [teamRes, testimonialsRes, clientsRes] = await Promise.all([
-            api.get('/team'),
-            api.get('/testimonials'),
-            api.get('/clients')
+            api.get('/public/team'),
+            api.get('/public/testimonials'),
+            api.get('/public/clients')
           ])
           
           const data = {

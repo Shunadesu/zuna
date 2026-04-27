@@ -5,26 +5,26 @@ import SectionHeader from '../ui/SectionHeader'
 const features = [
   {
     icon: FiCode,
-    title: 'Premium Quality',
-    description: 'Handpicked templates and resources crafted by expert designers and developers',
+    title: 'Chất Lượng Cao',
+    description: 'Các mẫu và tài nguyên được tuyển chọn bởi các nhà thiết kế và phát triển viên chuyên nghiệp',
     color: '#06b6d4'
   },
   {
     icon: FiZap,
-    title: 'Fast Delivery',
-    description: 'Instant access to all digital products. Download and start using immediately',
+    title: 'Giao Hàng Nhanh',
+    description: 'Truy cập ngay lập tức vào tất cả sản phẩm số. Tải về và bắt đầu sử dụng ngay',
     color: '#a855f7'
   },
   {
     icon: FiLayers,
-    title: 'Regular Updates',
-    description: 'All products receive regular updates and improvements to stay current',
+    title: 'Cập Nhật Thường Xuyên',
+    description: 'Tất cả sản phẩm được cập nhật và cải tiến thường xuyên để luôn mới nhất',
     color: '#8b5cf6'
   },
   {
     icon: FiUsers,
-    title: 'Community Support',
-    description: 'Join a vibrant community of creators and get support when you need it',
+    title: 'Hỗ Trợ Cộng Đồng',
+    description: 'Tham gia cộng đồng sáng tạo năng động và nhận hỗ trợ khi bạn cần',
     color: '#ec4899'
   }
 ]
@@ -36,8 +36,8 @@ const FeaturesSection = () => {
       
       <div className="container mx-auto px-6 relative z-10">
         <SectionHeader
-          title="Why Choose Zuna Web"
-          subtitle="Everything you need to build exceptional digital experiences"
+          title="Tại Sao Chọn Zuna Web"
+          subtitle="Mọi thứ bạn cần để tạo ra những trải nghiệm số xuất sắc"
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

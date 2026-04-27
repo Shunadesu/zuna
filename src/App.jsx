@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route, Outlet } from 'react-router-dom'
 import { CTAProvider } from './context/CTAContext'
 import Layout from './components/layout/Layout'
 import ScrollToTop from './components/layout/ScrollToTop'
@@ -37,105 +37,104 @@ function App() {
     <Router>
       <CTAProvider>
         <ScrollToTop />
-        <Layout>
         <Routes>
-          {/* Public Routes */}
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/portfolio" element={<Portfolio />} />
-          <Route path="/pricing" element={<Pricing />} />
-          
-          {/* Products Routes */}
-          <Route path="/products" element={<Products />} />
-          <Route path="/products/:slug" element={<ProductDetail />} />
-          <Route 
-            path="/products/create" 
-            element={
-              <ProtectedRoute>
-                <ProductForm />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/products/edit/:id" 
-            element={
-              <ProtectedRoute>
-                <ProductForm />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/products/:slug/review" 
-            element={
-              <ProtectedRoute>
-                <ReviewForm />
-              </ProtectedRoute>
-            } 
-          />
-          
-          {/* Stories Routes */}
-          <Route path="/stories" element={<Stories />} />
-          <Route path="/stories/:slug" element={<StoryDetail />} />
-          
-          {/* E-commerce Routes */}
-          <Route path="/cart" element={<Cart />} />
-          <Route 
-            path="/checkout" 
-            element={
-              <ProtectedRoute>
-                <Checkout />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/orders" 
-            element={
-              <ProtectedRoute>
-                <Orders />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/orders/:id" 
-            element={
-              <ProtectedRoute>
-                <OrderDetail />
-              </ProtectedRoute>
-            } 
-          />
-          
-          {/* User Routes (Protected) */}
-          <Route 
-            path="/dashboard" 
-            element={
-              <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/profile" 
-            element={
-              <ProtectedRoute>
-                <Profile />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/notifications" 
-            element={
-              <ProtectedRoute>
-                <Notifications />
-              </ProtectedRoute>
-            } 
-          />
+          {/* Wrap all routes in Layout */}
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/portfolio" element={<Portfolio />} />
+            <Route path="/pricing" element={<Pricing />} />
+            
+            {/* Products Routes */}
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/:slug" element={<ProductDetail />} />
+            <Route 
+              path="/products/create" 
+              element={
+                <ProtectedRoute>
+                  <ProductForm />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/products/edit/:id" 
+              element={
+                <ProtectedRoute>
+                  <ProductForm />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/products/:slug/review" 
+              element={
+                <ProtectedRoute>
+                  <ReviewForm />
+                </ProtectedRoute>
+              } 
+            />
+            
+            {/* Stories Routes */}
+            <Route path="/stories" element={<Stories />} />
+            <Route path="/stories/:slug" element={<StoryDetail />} />
+            
+            {/* E-commerce Routes */}
+            <Route path="/cart" element={<Cart />} />
+            <Route 
+              path="/checkout" 
+              element={
+                <ProtectedRoute>
+                  <Checkout />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/orders" 
+              element={
+                <ProtectedRoute>
+                  <Orders />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/orders/:id" 
+              element={
+                <ProtectedRoute>
+                  <OrderDetail />
+                </ProtectedRoute>
+              } 
+            />
+            
+            {/* User Routes (Protected) */}
+            <Route 
+              path="/dashboard" 
+              element={
+                <ProtectedRoute>
+                  <Dashboard />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/profile" 
+              element={
+                <ProtectedRoute>
+                  <Profile />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/notifications" 
+              element={
+                <ProtectedRoute>
+                  <Notifications />
+                </ProtectedRoute>
+              } 
+            />
+          </Route>
         </Routes>
-      </Layout>
       </CTAProvider>
     </Router>
   )
 }
 
 export default App
-
